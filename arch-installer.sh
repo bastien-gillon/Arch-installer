@@ -38,7 +38,7 @@ done
 $i=1
 for diskname in $(lsblk -o NAME)
 do
-echo "$i"
+echo "$i $diskname"
 echo "$diskname"
 i=$((i + 1))
 done
@@ -48,8 +48,8 @@ echo -e "choose on which disk you want to install archlinux : "
 read choice
 
 case $choice in
-  1) $disk = diskchoice "1" 
-  2) $disk = diskchoice "2"
-  3) $disk = diskchoice "3"
+  "1") $disk = diskchoice "1" 
+  "2") $disk = diskchoice "2"
+  "3") $disk = diskchoice "3"
   *) echo "ERROR"
 esac
