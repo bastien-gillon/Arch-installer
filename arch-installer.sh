@@ -40,7 +40,7 @@ for diskname in $(lsblk -o NAME)
 do
 echo "$i"
 echo "$diskname"
-$i=$i+1
+i=$((i + 1))
 done
 
 echo -e "choose on which disk you want to install archlinux : "
