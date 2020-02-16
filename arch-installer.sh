@@ -28,7 +28,7 @@ i=1
 for diskname in $(lsblk -o NAME)
 do
     if [ $i = $1 ];then
-        ${DISK} = $diskname
+        DISK = $diskname
     else
         i=$((i + 1))
     fi
