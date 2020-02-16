@@ -3,7 +3,8 @@
 echo "Launch of automatic installation of arch script..."
 
 loadkeys fr
-if [[ $(ls /sys/firmware/efi/efivars)]]; then
+sys= $(ls /sys/firmware/efi/efivars)
+if [[ $sys ]]; then
     echo "efi systeme"
     $system="efi"
 else
@@ -12,8 +13,7 @@ else
 fi
 
 echo "pingging archlinux.org ...."
-if [ "`ping -c 1 archlinux.org`" ]
-then
+if [ "`ping -c 1 archlinux.org`" ];then
   echo "ping success"
 else
   echo "ping failed.."
@@ -27,10 +27,10 @@ diskchoice()
 $i=1
 for diskname in $(lsblk -o NAME)
 do
-if [ $i = $1 ];then
-${DISK} = $diskname
-else
-$i=$i+1
+    if [ $i = $1 ];then
+        ${DISK} = $diskname
+    else
+        $i=$i+1
 done
 }
 
