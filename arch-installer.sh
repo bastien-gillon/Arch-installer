@@ -3,13 +3,13 @@
 echo "Launch of automatic installation of arch script..."
 
 loadkeys fr
-ls /sys/firmware/efi/efivars
+ls /sys/firmware/efi/efivars 
 if [ $? -eq 0 ] ; then
     echo "efi systeme"
-    $system="efi"
+    $system = "efi"
 else
     echo "BIOS systeme"
-    $system="bios"
+    $system = "bios"
 fi
 
 echo "pingging archlinux.org ...."
@@ -31,6 +31,7 @@ do
         ${DISK} = $diskname
     else
         $i=$i+1
+    fi
 done
 }
 
