@@ -24,7 +24,7 @@ timedatectl set-ntp true
 
 diskchoice()
 {
-$i=1
+i=1
 for diskname in $(lsblk -o NAME)
 do
     if [ $i = $1 ];then
