@@ -34,10 +34,10 @@ do
 done
 }
 
-i=1
+i=0
 for diskname in $(lsblk -o NAME)
 do
-  if [ $i -eq 1 ];then 
+  if [ $i = 0 ];then 
         i=$((i - 1))
   else 
     echo "$i) $diskname"
