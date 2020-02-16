@@ -27,9 +27,6 @@ diskchoice()
 i=1
 for diskname in $(lsblk -o NAME)
 do  
-    if [ diskname -eq "NAME" ];then 
-        i=$((i - 1))
-    fi
     if [ $i = $1 ];then
         DISK="$diskname"
     fi
@@ -40,7 +37,12 @@ done
 i=1
 for diskname in $(lsblk -o NAME)
 do
-echo "$i) $diskname"
+  if [ $i -eq 1 ];then 
+        i=$((i - 1))
+  else 
+    echo "$i) $diskname"
+  fi
+
 
 i=$((i + 1))
 done
