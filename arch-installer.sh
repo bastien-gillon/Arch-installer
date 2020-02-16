@@ -27,11 +27,11 @@ diskchoice()
 i=1
 for diskname in $(lsblk -o NAME)
 do  
-    if [ $i -eq "NAME" ];then 
+    if [ diskname -eq "NAME" ];then 
         i=$((i - 1))
     fi
     if [ $i = $1 ];then
-        {DISK}="$diskname"
+        DISK="$diskname"
     fi
     i=$((i + 1))
 done
