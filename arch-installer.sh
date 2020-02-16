@@ -6,10 +6,10 @@ loadkeys fr
 ls /sys/firmware/efi/efivars > /dev/null
 if [ $? -eq 0 ] ; then
     echo "efi systeme"
-    $system = "efi"
+    system="efi"
 else
     echo "BIOS systeme"
-    $system = "bios"
+    system="bios"
 fi
 
 echo "pingging archlinux.org ...."
@@ -26,15 +26,18 @@ diskchoice()
 {
 i=1
 for diskname in $(lsblk -o NAME)
-do
+do  
+    if [ $i -eq "NAME" ];then 
+        i=$((i - 1))
+    fi
     if [ $i = $1 ];then
-        ${DISK} = "$diskname"
+        {DISK}="$diskname"
     fi
     i=$((i + 1))
 done
 }
 
-$i=1
+i=1
 for diskname in $(lsblk -o NAME)
 do
 echo "$i) $diskname"
