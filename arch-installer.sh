@@ -30,7 +30,7 @@ do
     if [ $i = $1 ];then
         ${DISK} = $diskname
     else
-        $i=$i+1
+        i=$((i + 1))
     fi
 done
 }
