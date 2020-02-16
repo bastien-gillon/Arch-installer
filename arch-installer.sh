@@ -4,7 +4,7 @@ echo "Launch of automatic installation of arch script..."
 
 loadkeys fr
 sys= $(ls /sys/firmware/efi/efivars)
-if [ $sys != "ls: cannot access '/sys/firmware/efi/efivars': No such file or directory"]; then
+if [ $sys -ne "ls: cannot access '/sys/firmware/efi/efivars': No such file or directory"]; then
     echo "efi systeme"
     $system="efi"
 else
