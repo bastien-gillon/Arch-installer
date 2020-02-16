@@ -48,8 +48,10 @@ echo -e "choose on which disk you want to install archlinux : "
 read choice
 
 case $choice in
-  "1") $disk = diskchoice "1" ;;
-  "2") $disk = diskchoice "2";;
-  "3") $disk = diskchoice "3";;
+  "1") diskchoice "1" ;;
+  "2") diskchoice "2";;
+  "3") diskchoice "3";;
   *) echo "ERROR";;
 esac
+
+echo "you choose the disk ${DISK}"
