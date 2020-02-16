@@ -3,7 +3,7 @@
 echo "Launch of automatic installation of arch script..."
 
 loadkeys fr
-ls /sys/firmware/efi/efivars 
+ls /sys/firmware/efi/efivars > /dev/null
 if [ $? -eq 0 ] ; then
     echo "efi systeme"
     $system = "efi"
@@ -28,10 +28,9 @@ i=1
 for diskname in $(lsblk -o NAME)
 do
     if [ $i = $1 ];then
-        ${DISK} = $diskname
-    else
-        i=$((i + 1))
+        ${DISK} = "$diskname"
     fi
+    i=$((i + 1))
 done
 }
 
