@@ -54,5 +54,3 @@ case $choice in
   3) $disk = diskchoice "3"
   *) echo "ERROR"
 esac
-
-echo "you choose $disk"
