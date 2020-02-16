@@ -40,7 +40,7 @@ for diskname in $(lsblk -o NAME)
 do
   if [ $i != 0 ];then 
         #echo "$i) $diskname"
-        disk$i = $diskname
+        $(disk$i) = $diskname
   fi
 
 i=$((i + 1))
