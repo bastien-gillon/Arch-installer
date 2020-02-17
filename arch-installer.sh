@@ -58,7 +58,7 @@ option=""
 COUNT2=0
 while [ COUNT2 != ${#MENU_OPTIONS[*]} ]
 do
-  option=${($option $i $MENU_OPTIONS[$COUNT2])}
+  option=$[$option $i $MENU_OPTIONS[$COUNT2]]
   COUNT2=$[COUNT2+1]
 done
 dialog --title "A dialog Menu Example" --menu "Please choose an option:" 15 55 5 $option
