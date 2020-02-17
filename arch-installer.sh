@@ -56,14 +56,17 @@ done
 
 option=""
 COUNT2=0
+j=1
 while [ $COUNT2 -lt ${#MENU_OPTIONS[*]} ]
 do
+  if [ $COUNT2 != 0 || $COUNT2 != 1]  ;then
+    option="$option $j ${MENU_OPTIONS[$COUNT2]}"
+    j=$[j+1]
+  else
   
-  option="$option $COUNT2 ${MENU_OPTIONS[$COUNT2]}"
+  fi
   COUNT2=$[COUNT2+1]
-  echo "$option"
 done
-option=${option##* 0  1 NAME }
 dialog --title "A dialog Menu Example" --menu "Please choose an option:" 15 55 5 1 $option
 
 # echo -e "choose on which disk you want to install archlinux : "
