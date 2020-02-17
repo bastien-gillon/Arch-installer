@@ -53,7 +53,7 @@ dialog --title "Disk choice" \
 2 ${disk[2]} \
 3 ${disk[3]} \
 4 ${disk[4]} \
-5 ${disk[5]} \
+5 ${disk[5]} 
 
 
 
