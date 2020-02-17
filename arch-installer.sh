@@ -90,8 +90,8 @@ case $swap in
       --inputbox "Enter your name " 8 60 2 >$swapsize 
       echo "$swapsize"
       sleep 5;
-   1) exit 1;;
-   255) exit 1;;
+   1) exit ;;
+   255) exit ;;
 esac
 
 dialog --title "/"  --yesno "Do you want a \"/\" partition ?" 6 20 3>&1 1>&2 2>&3 3>&- 
