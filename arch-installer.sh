@@ -89,8 +89,9 @@ case $swap in
    0) 
     dialog --title "Swap Size" \      
       --inputbox "Enter a size for the swap partition (ex: 512M or 1G)" 8 60 2
-      echo "$swapsize" ;;
-      sleep 10
+      echo "$swapsize" 
+       sleep 10;;
+     
    1) exit ;;
    255) exit ;;
 esac
