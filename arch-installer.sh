@@ -56,7 +56,7 @@ done
 
 option=""
 COUNT2=1
-while [ COUNT2 != ${#MENU_OPTIONS[*]} ]
+while [ COUNT2 <= ${#MENU_OPTIONS[*]} ]
 do
   echo "$option $COUNT2 ${MENU_OPTIONS[$COUNT2]}"
   option=$($option $COUNT2 ${MENU_OPTIONS[$COUNT2]})
