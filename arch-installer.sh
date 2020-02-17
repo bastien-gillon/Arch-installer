@@ -58,8 +58,8 @@ option=""
 COUNT2=0
 while [ $COUNT2 -lt ${#MENU_OPTIONS[*]} ]
 do
-  COUNT2=$[COUNT2+1]
   echo "$option"
+  COUNT2=$[COUNT2+1]
   option="$option $COUNT2 ${MENU_OPTIONS[$COUNT2]}"
   
 done
