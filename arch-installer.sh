@@ -85,8 +85,8 @@ swap=$?
 
 case $swap in
    0) sizeswap=$dialog --title "Inputbox - Example" \
---backtitle "unstableme.blogspot.com" \
---inputbox "Enter your favourite OS here" 8 50 ) ;;
+    --backtitle "unstableme.blogspot.com" \
+    --inputbox "Enter your favourite OS here" 8 50 10a) ;;
    1) exit 1;;
    255) exit 1;;
 esac
