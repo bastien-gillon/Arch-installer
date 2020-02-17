@@ -72,6 +72,7 @@ dialog --title "Disk Choice"\
  --menu "choose on which disk you want to install archlinux : "  20 70 10 \
  $option 3>&1 1>&2 2>&3 3>&- )
 
+DISK = MENU_OPTIONS[$DISK]
 
 #echo "you choose the disk ${DISK}"
 
@@ -80,7 +81,7 @@ dialog --title "Disk Choice"\
 
 swap=$(dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20 3>&1 1>&2 2>&3 3>&- )
 
-echo $swap
+echo "${DISK}"
 #if [ $swap = "" ];then 
 
 #  if [ choiceS = "y" || choiceS = "Y" ], then
