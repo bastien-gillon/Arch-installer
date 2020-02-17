@@ -47,13 +47,40 @@ i=$((i + 1))
 done
  
 
-dialog --title "Disk choice" \
---menu "choose on which disk you want to install archlinux : " 20 60 10 \
+
 1 ${disk[1]} \
 2 ${disk[2]} \
 3 ${disk[3]} \
 4 ${disk[4]} \
 5 ${disk[5]} 
+
+cmd=(dialog --title "Disk choice" --menu "choose on which disk you want to install archlinux : " 20 60 10 \)
+
+options=(1 ${disk[1]} 
+    2 ${disk[2]} 
+    3 ${disk[3]} 
+    4 ${disk[4]}
+    5 ${disk[5]} )
+
+choiceD=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+
+for choice in $choiceD
+do
+    case $choice in
+        1)
+            echo "First Option"
+            ;;
+        2)
+            echo "Second Option"
+            ;;
+        3)
+            echo "Third Option"
+            ;;
+        4)
+            echo "Fourth Option"
+            ;;
+    esac
+done
 
 
 
