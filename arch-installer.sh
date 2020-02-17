@@ -89,7 +89,7 @@ echo "$swap"
       --inputbox "Enter your name " 8 60 2)
       echo "$swapsize"
       sleep 5
-
+exit
 case $swap in
    0) ;;
    1) exit ;;
