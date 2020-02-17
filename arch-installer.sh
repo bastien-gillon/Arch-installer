@@ -69,7 +69,7 @@ do
   COUNT=$[COUNT+1]
 done
 
-DISK=dialog --title "Disk Choice" --menu "choose on which disk you want to install archlinux : " 20 70 10 $option
+DISK=$(dialog --title "Disk Choice" --menu "choose on which disk you want to install archlinux : " 20 70 10 $option)
 
 
 echo "you choose the disk ${DISK}"
