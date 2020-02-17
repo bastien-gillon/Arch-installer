@@ -60,10 +60,11 @@ j=1
 while [ $COUNT -lt ${#MENU_OPTIONS[*]} ]
 do
   if [ $COUNT -ne 0 ] && [ $COUNT -ne 1 ];then
-    echo $COUNT
+    
     j=$[j+1]
     option="$option $j ${MENU_OPTIONS[$COUNT]}"
-   
+     echo $option 
+     echo $j
   fi
   COUNT=$[COUNT+1]
 done
