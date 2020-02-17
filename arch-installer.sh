@@ -49,7 +49,7 @@ done
 #dialog --menu "Choose one:" 10 30 3 1 $disk1 2 \ $disk2\ 3 $disk3 \ 4 $disk4 \
 #--title "Disk choice" \choiceD
 #--checklist 
-dialog --Menu Box "Choose toppings:" 10 40 3 \
+dialog --menubox "Choose toppings:" 10 40 3 \
         1 Cheese on \
         2 "Tomato Sauce" on \
         3 Anchovies off
