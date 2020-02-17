@@ -59,10 +59,10 @@ COUNT2=1
 while [ COUNT2 != ${#MENU_OPTIONS[*]} ]
 do
  echo "[$option $COUNT2 $MENU_OPTIONS[$COUNT2]"
-  option=$(($option $COUNT2 $MENU_OPTIONS[$COUNT2]))
+  option=$($option $COUNT2 ${MENU_OPTIONS[$COUNT2]})
   COUNT2=$[COUNT2+1]
 done
-dialog --title "A dialog Menu Example" --menu "Please choose an option:" 15 55 5 1 $(MENU_OPTIONS[1]) 2 $(MENU_OPTIONS[2]) 3 $(MENU_OPTIONS[3])
+dialog --title "A dialog Menu Example" --menu "Please choose an option:" 15 55 5 1 ${MENU_OPTIONS[1]} 2 ${MENU_OPTIONS[2]} 3 ${MENU_OPTIONS[3]}
 
 # echo -e "choose on which disk you want to install archlinux : "
 
