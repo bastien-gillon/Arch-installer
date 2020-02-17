@@ -63,7 +63,7 @@ do
   COUNT2=$[COUNT2+1]
   echo "$option"
 done
-exit
+option=${option##*0  1 NAME}
 dialog --title "A dialog Menu Example" --menu "Please choose an option:" 15 55 5 1 $option
 
 # echo -e "choose on which disk you want to install archlinux : "
