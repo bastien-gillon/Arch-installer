@@ -55,7 +55,7 @@ do
 done
 
 option=""
-COUNT2=0
+COUNT2=1
 while [ COUNT2 != ${#MENU_OPTIONS[*]} ]
 do
   option=$[$option $COUNT2 $MENU_OPTIONS[$COUNT2]]
