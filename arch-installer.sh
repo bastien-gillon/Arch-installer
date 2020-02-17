@@ -40,7 +40,7 @@ for diskname in $(lsblk -o NAME)
 do
   if [ $i != 0 ];then 
         #echo "$i) $diskname"
-        disk$i="$diskname"
+        disk[$i]="$diskname"
   fi
 
 i=$((i + 1))
@@ -49,7 +49,10 @@ done
 #dialog --menu "Choose one:" 10 30 3 1 $disk1 2 \ $disk2\ 3 $disk3 \ 4 $disk4 \
 #--title "Disk choice" \choiceD
 #--checklist 
-dialog --menu "Choose one:" 10 30 3 1 red 2 green\ 3 blue
+dialog --checklist "Choose toppings:" 10 40 3 \
+        1 Cheese on \
+        2 "Tomato Sauce" on \
+        3 Anchovies off
 
 
 # echo -e "choose on which disk you want to install archlinux : "
