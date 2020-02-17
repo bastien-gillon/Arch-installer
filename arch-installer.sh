@@ -49,10 +49,13 @@ done
 #dialog --menu "Choose one:" 10 30 3 1 $disk1 2 \ $disk2\ 3 $disk3 \ 4 $disk4 \
 #--title "Disk choice" \choiceD
 #--checklist 
-dialog --menu "Choose toppings:" 10 40 3 4\
-        1 Cheese \
-        2 "Tomato Sauce" \
-        3 Anchovies
+
+dialog --title "A dialog Menu Example" \
+--menu "Please choose an option:" 15 55 5 \
+1 "Add a record to DB" \
+2 "Delete a record from DB" \
+3 "Exit from this menu"
+
 
 
 # echo -e "choose on which disk you want to install archlinux : "
