@@ -84,9 +84,7 @@ dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20 3>&1 1>&2 2
 swap=$?
 echo "$swap"
 
-  dialog --title "Inputbox - To take input from you" \
-      --backtitle "Linux Shell Script Tutorial Example" \
-      --inputbox "Enter your name " 8 60 2)
+  user_input=$(dialog --title "Create Directory" --inputbox "Enter the directory name:" 8 40)
       echo "$swapsize"
       sleep 5
 exit
