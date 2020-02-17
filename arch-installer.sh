@@ -35,38 +35,30 @@ do
 done
 }
 
-i=0
-for diskname in $(lsblk -o NAME)
-do
-  if [ $i != 0 ];then 
-        #echo "$i) $diskname"
-        disk[$i]="$diskname"
-  fi
+#i=0
+#for diskname in $(lsblk -o NAME)
+#do
+#  if [ $i != 0 ];then 
+#        #echo "$i) $diskname"
+#        disk[$i]="$diskname"
+#  fi
 
-i=$((i + 1))
-done
+#i=$((i + 1))
+#done
  
-
-
-1 ${disk[1]} \
-2 ${disk[2]} \
-3 ${disk[3]} \
-4 ${disk[4]} \
-5 ${disk[5]} 
-
-cmd=(dialog --title "Disk choice" --menu "choose on which disk you want to install archlinux : " 20 60 10 \)
-
-options=(1 ${disk[1]} 
-    2 ${disk[2]} 
-    3 ${disk[3]} 
-    4 ${disk[4]}
-    5 ${disk[5]} )
-
-choiceD=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-
-for choice in $choiceD
+ for i in `lsblk -o NAME`
 do
-    case $choice in
+       COUNT=$[COUNT+1]
+       MENU_OPTIONS="${MENU_OPTIONS} ${COUNT} $i off "
+done
+
+
+cmd=(dialog --separate-output --menu "Select options:" 22 76 16)
+options=(${MENU_OPTIONS})
+choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+for choice in $choices
+do
+       case $choice in
         1)
             echo "First Option"
             ;;
@@ -81,7 +73,6 @@ do
             ;;
     esac
 done
-
 
 
 # echo -e "choose on which disk you want to install archlinux : "
