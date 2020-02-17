@@ -50,12 +50,13 @@ done
 do
        COUNT=$[COUNT+1]
        MENU_OPTIONS="${MENU_OPTIONS} ${COUNT} $i off "
+       echo "yousk2"
 done
 
 
-cmd=(dialog --separate-output --menu "Select options:" 22 76 16)
+cmd=(dialog --menu "Select options:" 22 76 16)
 options=(${MENU_OPTIONS})
-choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+choices=$("${cmd[@]}" "${options[@]}")
 for choice in $choices
 do
        case $choice in
