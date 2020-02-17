@@ -63,8 +63,6 @@ do
     
     j=$[j+1]
     option="$option $j ${MENU_OPTIONS[$COUNT]}"
-     echo $option 
-     echo $j
   fi
   COUNT=$[COUNT+1]
 done
@@ -75,11 +73,12 @@ dialog --title "Disk Choice"\
  $option 3>&1 1>&2 2>&3 3>&- )
 
 
-echo "you choose the disk ${DISK}"
+#echo "you choose the disk ${DISK}"
 
 
 #!--------------------------------------Partition----------------------------------------!#
 
+dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20
 #if [ $system = efi ];then 
 #  echo -e "Do you want a SWAP partition [y/n]"
 #  
