@@ -88,21 +88,21 @@ done
 #  *) echo "ERROR";;
 #esac
 
-echo "you choose the disk ${DISK}"
+#echo "you choose the disk ${DISK}"
 
 
 #!--------------------------------------Partition----------------------------------------!#
 
-if [ $system = efi ];then 
-  echo -e "Do you want a SWAP partition [y/n]"
+#if [ $system = efi ];then 
+#  echo -e "Do you want a SWAP partition [y/n]"
+#  
+#  read choiceS
+# 
+#  if [ choiceS = "y" || choiceS = "Y" ], then
+#        echo -e "Enter the size of the partition "
   
-  read choiceS
- 
-  if [ choiceS = "y" || choiceS = "Y" ], then
-        echo -e "Enter the size of the partition "
-  
-  else
+#  else
   
   
-  fi
-fi
+#  fi
+#fi
