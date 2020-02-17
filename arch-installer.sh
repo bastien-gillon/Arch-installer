@@ -56,10 +56,10 @@ done
 
 option=""
 COUNT2=1
-while [ COUNT2 -lt ${#MENU_OPTIONS[*]} ]
+while [ $COUNT2 -lt ${#MENU_OPTIONS[*]} ]
 do
   echo "$option"
-  option=$($option $COUNT2 ${MENU_OPTIONS[$COUNT2]})
+  option=($option $COUNT2 ${MENU_OPTIONS[$COUNT2]})
   COUNT2=$[COUNT2+1]
 done
 dialog --title "A dialog Menu Example" --menu "Please choose an option:" 15 55 5 1 ${MENU_OPTIONS[2]} 2 ${MENU_OPTIONS[3]} 3 ${MENU_OPTIONS[4]} 4 ${#MENU_OPTIONS[*]}
@@ -69,7 +69,7 @@ dialog --title "A dialog Menu Example" --menu "Please choose an option:" 15 55 5
 #read choiceD
 
 #!case $choiceD in
-#  "1") diskchoice "0" ;;
+#  "1") diskchoice "0";;
 #  "2") diskchoice "1";;
 #  "3") diskchoice "2";;
 #  "4") diskchoice "3";;
