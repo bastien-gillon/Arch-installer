@@ -89,7 +89,7 @@ case $swap in
       --backtitle "Linux Shell Script Tutorial Example" \
       --inputbox "Enter your name " 8 60 2 >$swapsize 
       echo "$swapsize"
-      sleep 5;
+      sleep 5;;
    1) exit ;;
    255) exit ;;
 esac
