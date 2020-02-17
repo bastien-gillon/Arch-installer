@@ -54,28 +54,12 @@ do
        MENU_OPTIONS[$COUNT]="$i"
 done
 
-
-cmd=(dialog --checklist "Select options:" 22 76 16)
-options=(${MENU_OPTIONS})
-choices=$("${cmd[@]}" "${options[@]}")
-for choice in $choices
+option=""
+for i in {1..${#MENU_OPTIONS[*]}}
 do
-       case $choice in
-        1)
-            echo "First Option"
-            ;;
-        2)
-            echo "Second Option"
-            ;;
-        3)
-            echo "Third Option"
-            ;;
-        4)
-            echo "Fourth Option"
-            ;;
-    esac
+  option=$($option $i $MENU_OPTIONS[$i])
 done
-
+dialog --title "A dialog Menu Example" --menu "Please choose an option:" 15 55 5 $option
 
 # echo -e "choose on which disk you want to install archlinux : "
 
