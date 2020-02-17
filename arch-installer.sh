@@ -55,11 +55,11 @@ do
 done
 
 option=""
-COUNT2=1
+COUNT2=0
 while [ $COUNT2 -lt ${#MENU_OPTIONS[*]} ]
 do
   echo "$option"
-  option=($option $COUNT2 ${MENU_OPTIONS[$COUNT2]})
+  option="$option $COUNT2 ${MENU_OPTIONS[$COUNT2]}"
   COUNT2=$[COUNT2+1]
 done
 dialog --title "A dialog Menu Example" --menu "Please choose an option:" 15 55 5 1 ${MENU_OPTIONS[2]} 2 ${MENU_OPTIONS[3]} 3 ${MENU_OPTIONS[4]} 4 ${#MENU_OPTIONS[*]}
