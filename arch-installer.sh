@@ -62,8 +62,6 @@ do
   if [ $COUNT2 != 0 || $COUNT2 != 1]  ;then
     option="$option $j ${MENU_OPTIONS[$COUNT2]}"
     j=$[j+1]
-  else
-  
   fi
   COUNT2=$[COUNT2+1]
 done
