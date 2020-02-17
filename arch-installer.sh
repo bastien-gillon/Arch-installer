@@ -47,13 +47,13 @@ i=$((i + 1))
 done
  
 
-dialog --title "A dialog Menu Example" \
+dialog --title "Disk choice" \
 --menu "choose on which disk you want to install archlinux : " 20 60 10 \
-1 $disk[1] \
-2 $disk[2] \
-3 $disk[3] \
-4 $disk[4] \
-5 $disk[5] \
+1 ${disk[1]} \
+2 ${disk[2]} \
+3 ${disk[3]} \
+4 ${disk[4]} \
+5 ${disk[5]} \
 
 
 
