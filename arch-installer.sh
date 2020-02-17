@@ -45,10 +45,7 @@ do
 
 i=$((i + 1))
 done
-
-#dialog --menu "Choose one:" 10 30 3 1 $disk1 2 \ $disk2\ 3 $disk3 \ 4 $disk4 \
-#--title "Disk choice" \choiceD
-#--checklist 
+ 
 
 dialog --title "A dialog Menu Example" \
 --menu "Please choose an option:" 15 55 5 \
@@ -60,16 +57,16 @@ dialog --title "A dialog Menu Example" \
 
 # echo -e "choose on which disk you want to install archlinux : "
 
-read choiceD
+#read choiceD
 
-case $choiceD in
-  "1") diskchoice "0" ;;
-  "2") diskchoice "1";;
-  "3") diskchoice "2";;
-  "4") diskchoice "3";;
-  "5") diskchoice "4";;
-  *) echo "ERROR";;
-esac
+#!case $choiceD in
+#  "1") diskchoice "0" ;;
+#  "2") diskchoice "1";;
+#  "3") diskchoice "2";;
+#  "4") diskchoice "3";;
+#  "5") diskchoice "4";;
+#  *) echo "ERROR";;
+#esac
 
 echo "you choose the disk ${DISK}"
 
