@@ -83,11 +83,13 @@ dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20 3>&1 1>&2 2
 
 swap=$?
 echo "$swap"
-sleep 10;
+
 case $swap in
    0) dialog --title "Inputbox - To take input from you" \
       --backtitle "Linux Shell Script Tutorial Example" \
-      --inputbox "Enter your name " 8 60 2>$OUTPUT ;;
+      --inputbox "Enter your name " 8 60 2 >$swapsize 
+      echo "$swapsize"
+      sleep 5;
    1) exit 1;;
    255) exit 1;;
 esac
