@@ -84,7 +84,7 @@ dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20 3>&1 1>&2 2
 swap=$?
 
 case $swap in
-   0) sdialog --title "Inputbox - To take input from you" \
+   0) dialog --title "Inputbox - To take input from you" \
       --backtitle "Linux Shell Script Tutorial Example" \
       --inputbox "Enter your name " 8 60 2>$OUTPUT
 ;;
