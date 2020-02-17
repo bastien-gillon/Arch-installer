@@ -46,11 +46,10 @@ done
 #i=$((i + 1))
 #done
  
- for i in `lsblk -o NAME`
+ for i in $(lsblk -o NAME)
 do
        COUNT=$[COUNT+1]
        MENU_OPTIONS="${MENU_OPTIONS} ${COUNT} $i off "
-       echo "yousk2"
 done
 
 
