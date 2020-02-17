@@ -72,17 +72,36 @@ dialog --title "Disk Choice"\
  --menu "choose on which disk you want to install archlinux : "  20 70 10 \
  $option 3>&1 1>&2 2>&3 3>&- )
 
-DISK = MENU_OPTIONS[$DISK]
+DISK=${MENU_OPTIONS[$DISK+1]}
 
 #echo "you choose the disk ${DISK}"
 
 
 #!--------------------------------------Partition----------------------------------------!#
 
-swap=$(dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20 3>&1 1>&2 2>&3 3>&- )
+dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20 3>&1 1>&2 2>&3 3>&- 
 
-echo "${DISK}"
-#if [ $swap = "" ];then 
+swap=$?
+
+case $swap in
+   0) sizeswap=$(dialog --title "SWAP Size"  --input "Enter a size for the swap partition (ex: 512M or 1G) " 6 20 3>&1 1>&2 2>&3 3>&-) ;;
+   1) ;;
+   255) exit 1;;
+esac
+
+dialog --title "/"  --yesno "Do you want a \"/\" partition ?" 6 20 3>&1 1>&2 2>&3 3>&- 
+case $rootpartition in
+   0) sizerootpartition=$(dialog --title "\ Size"  --input "Enter a size for the swap partition (ex: 512M or 1G) " 6 20 3>&1 1>&2 2>&3 3>&-) ;;
+   1) ;;
+   255) exit 1;;
+esac
+
+dialog --title "/home"  --yesno "Do you want a \"/home\" partition ?" 6 20 3>&1 1>&2 2>&3 3>&- 
+case $rootpartition in
+   0) sizerootpartition=$(dialog --title "\ Size"  --input "Enter a size for the swap partition (ex: 512M or 1G) " 6 20 3>&1 1>&2 2>&3 3>&-) ;;
+   1) ;;
+   255) exit 1;;
+esac
 
 #  if [ choiceS = "y" || choiceS = "Y" ], then
 #        echo -e "Enter the size of the partition "
