@@ -69,22 +69,10 @@ do
   COUNT=$[COUNT+1]
 done
 
-dialog --title "Disk Choice" --menu "choose on which disk you want to install archlinux : " 15 55 5 $option
+DISK=dialog --title "Disk Choice" --menu "choose on which disk you want to install archlinux : " 20 70 10 $option
 
-# echo -e "choose on which disk you want to install archlinux : "
 
-#read choiceD
-
-#!case $choiceD in
-#  "1") diskchoice "0";;
-#  "2") diskchoice "1";;
-#  "3") diskchoice "2";;
-#  "4") diskchoice "3";;
-#  "5") diskchoice "4";;
-#  *) echo "ERROR";;
-#esac
-
-#echo "you choose the disk ${DISK}"
+echo "you choose the disk ${DISK}"
 
 
 #!--------------------------------------Partition----------------------------------------!#
