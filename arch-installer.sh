@@ -54,7 +54,7 @@ do
 done
 
 
-cmd=(dialog --menu "Select options:" 22 76 16)
+cmd=(dialog --checklist "Select options:" 22 76 16)
 options=(${MENU_OPTIONS})
 choices=$("${cmd[@]}" "${options[@]}")
 for choice in $choices
