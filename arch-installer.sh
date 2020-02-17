@@ -47,7 +47,7 @@ done
 #done
  
 
- COUNT=0
+COUNT=0
  for i in $(lsblk -o NAME)
 do
        COUNT=$[COUNT+1]
@@ -55,15 +55,16 @@ do
 done
 
 option=""
-COUNT2=0
+COUNT=0
 j=1
-while [ $COUNT2 -lt ${#MENU_OPTIONS[*]} ]
+while [ $COUNT -lt ${#MENU_OPTIONS[*]} ]
 do
-  if [ $COUNT2 != 0 ] || [ $COUNT2 != 1]  ;then
-    option="$option $j ${MENU_OPTIONS[$COUNT2]}"
+  if [ $COUNT != 0 ] || [ $COUNT != 1 ];then
+    echo $COUNT
+    option="$option $j ${MENU_OPTIONS[$COUNT]}"
     j=$[j+1]
   fi
-  COUNT2=$[COUNT2+1]
+  COUNT=$[COUNT+1]
 done
 dialog --title "A dialog Menu Example" --menu "Please choose an option:" 15 55 5 1 $option
 
