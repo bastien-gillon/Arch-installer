@@ -59,7 +59,7 @@ COUNT2=0
 j=1
 while [ $COUNT2 -lt ${#MENU_OPTIONS[*]} ]
 do
-  if [ $COUNT2 != 0 || $COUNT2 != 1]  ;then
+  if [ $COUNT2 != 0 ] || [ $COUNT2 != 1]  ;then
     option="$option $j ${MENU_OPTIONS[$COUNT2]}"
     j=$[j+1]
   fi
