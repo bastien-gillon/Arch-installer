@@ -46,10 +46,12 @@ done
 #i=$((i + 1))
 #done
  
+
+ COUNT=0
  for i in $(lsblk -o NAME)
 do
        COUNT=$[COUNT+1]
-       MENU_OPTIONS="${MENU_OPTIONS} ${COUNT} $i off "
+       MENU_OPTIONS[$COUNT]="$i"
 done
 
 
