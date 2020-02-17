@@ -78,12 +78,11 @@ dialog --title "Disk Choice"\
 
 #!--------------------------------------Partition----------------------------------------!#
 
-dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20
-#if [ $system = efi ];then 
-#  echo -e "Do you want a SWAP partition [y/n]"
-#  
-#  read choiceS
-# 
+swap=$(dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20 3>&1 1>&2 2>&3 3>&- )
+
+echo $swap
+#if [ $swap = "" ];then 
+
 #  if [ choiceS = "y" || choiceS = "Y" ], then
 #        echo -e "Enter the size of the partition "
   
