@@ -72,8 +72,7 @@ done
 DISK=$(\
 dialog --title "Disk Choice"\
  --menu "choose on which disk you want to install archlinux : "  20 70 10 \
- $option\
- 3>&1 1>&2 2>&3 3>&- )
+ $option 3>&1 1>&2 2>&3 3>&- )
 
 
 echo "you choose the disk ${DISK}"
