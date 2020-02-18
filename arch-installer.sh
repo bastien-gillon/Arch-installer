@@ -35,18 +35,6 @@ do
 done
 }
 
-#i=0
-#for diskname in $(lsblk -o NAME)
-#do
-#  if [ $i != 0 ];then 
-#        #echo "$i) $diskname"
-#        disk[$i]="$diskname"
-#  fi
-
-#i=$((i + 1))
-#done
- 
-
 COUNT=0
  for i in $(lsblk -o NAME)
 do
@@ -74,7 +62,8 @@ dialog --title "Disk Choice"\
 
 DISK=${MENU_OPTIONS[$DISKID+1]}
 
-#echo "you choose the disk ${DISK}"
+echo "you choose the disk ${DISK}"
+exit
 
 
 #!--------------------------------------Partition----------------------------------------!#
