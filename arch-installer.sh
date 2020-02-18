@@ -79,8 +79,7 @@ DISK=${MENU_OPTIONS[$DISK+1]}
 
 #!--------------------------------------Partition----------------------------------------!#
 
-dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20 
-#3>&1 1>&2 2>&3 3>&- 
+dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20 3>&1 1>&2 2>&3 3>&- 
 
 swap=$?
 echo "$swap"
@@ -88,8 +87,9 @@ echo "$swap"
 
 case $swap in
    0) 
-    dialog --title "Swap Size" \      
+      dialog --title "Swap Size" \      
       --inputbox "Enter a size for the swap partition (ex: 512M or 1G)" 8 60 2
+      swapsize=$?
       echo "$swapsize" ;;
      
    1) exit ;;
