@@ -86,7 +86,7 @@ case $swap in
    0)  swapsize=$(dialog --title "Swap Size" \
       --inputbox "Enter a size for the swap partition (ex: 512M or 1G)" 8 60 2)
      
-   1) ;;
+   1) swapsize="no";;
    255) exit ;;
 esac
 
@@ -96,7 +96,7 @@ rootpartition=$?
 case $rootpartition in
    0) sizerootpartition=$(dialog --title "/ Size" \
       --inputbox "Enter a size for the / partition (ex: 512M or 1G)" 8 60 2) ;;
-   1) ;;
+   1) rootpartition="no";;
    255) exit 1;;
 esac
 
@@ -104,12 +104,15 @@ dialog --title "/home"  --yesno "Do you want a \"/home\" partition ?" 6 20 3>&1 
 homepartition=$?
 
 case $homepartition in
-   0) sizerootpartition=$(dialog --title "/home Size" \
+   0) sizehomepartition=$(dialog --title "/home Size" \
       --inputbox "Enter a size for the /home partition (ex: 512M or 1G)" 8 60 2) ;;
-   1) ;;
+   1) sizehomepartition="no";;
    255) exit 1;;
 esac
 
+echo "$swapsize"
+echo "$sizerootpartition"
+echo "$sizehomepartition"
 #  if [ choiceS = "y" || choiceS = "Y" ], then
 #        echo -e "Enter the size of the partition "
   
