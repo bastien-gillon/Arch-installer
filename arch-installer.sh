@@ -84,8 +84,9 @@ dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20 3>&1 1>&2 2
 swap=$?
 echo "$swap"
 
-dialog --title "Swap Size" \      
-      --inputbox "Enter a size for the swap partition (ex: 512M or 1G)" 8 60 2
+dialog --title "Inputbox - To take input from you" \
+--backtitle "Linux Shell Script Tutorial Example" \
+--inputbox "Enter your name " 8 60 2
 
 
 case $swap in
