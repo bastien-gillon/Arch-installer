@@ -29,7 +29,7 @@ i=-1
 for diskname in $(lsblk -o NAME)
 do  
     if [ $i = $1 ];then
-        DISK="$diskname"
+        DISKID="$diskname"
     fi
     i=$((i + 1))
 done
@@ -67,12 +67,12 @@ do
   COUNT=$[COUNT+1]
 done
 
-DISK=$(\
+DISKID=$(\
 dialog --title "Disk Choice"\
  --menu "choose on which disk you want to install archlinux : "  20 70 10 \
  $option 3>&1 1>&2 2>&3 3>&- )
 
-DISK=${MENU_OPTIONS[$DISK+1]}
+DISK=${MENU_OPTIONS[$DISKID+1]}
 
 #echo "you choose the disk ${DISK}"
 
