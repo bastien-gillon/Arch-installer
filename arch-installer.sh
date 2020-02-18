@@ -62,8 +62,7 @@ dialog --title "Disk Choice"\
 
 DISK=${MENU_OPTIONS[$DISKID+1]}
 
-echo "you choose the disk ${DISK}"
-exit
+#echo "you choose the disk ${DISK}"
 
 
 #!--------------------------------------Partition----------------------------------------!#
