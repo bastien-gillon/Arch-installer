@@ -89,6 +89,7 @@ done
 DISKSIZE=${TABSIZE[$DISK]} 
 echo $DISK
 echo $DISKSIZE
+exit
 dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20 3>&1 1>&2 2>&3 3>&- 
 swap=$?
 
