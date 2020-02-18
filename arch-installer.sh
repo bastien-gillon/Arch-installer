@@ -79,13 +79,22 @@ DISK=${MENU_OPTIONS[$DISK+1]}
 
 #!--------------------------------------Partition----------------------------------------!#
 
+COUNT=0
+ for i in $(lsblk -o SIZE)
+do
+       COUNT=$[COUNT+1]
+       TABSIZE[$COUNT]="$i"
+done
+
+DISKSIZE=${TABSIZE[$DISK+1]} 
+
 dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20 3>&1 1>&2 2>&3 3>&- 
 swap=$?
 
 
 case $swap in
    0)  swapsize=$(dialog --title "Swap Size" \
-      --inputbox "Enter a size for the swap partition (ex: 512M or 1G)" 8 60 2 3>&1 1>&2 2>&3 3>&- ) ;;
+      --inputbox "Enter a size for the swap partition (ex: 512M or 1G)" --backtitle Size of the disk \: ${DISKSIZE} \ 8 60 2 3>&1 1>&2 2>&3 3>&- ) ;;
      
    1) swapsize="no" ;;
    255) exit ;;
@@ -96,8 +105,8 @@ rootpartition=$?
 
 case $rootpartition in
    0) sizerootpartition=$(dialog --title "/ Size" \
-      --inputbox "Enter a size for the / partition (ex: 512M or 1G)" 8 60 2 3>&1 1>&2 2>&3 3>&- ) ;;
-   1) rootpartition="no" ;;
+      --inputbox "Enter a size for the / partition (ex: 512M or 1G)"  --backtitle Size of the disk \: ${DISKSIZE} , size of the swap: $swapsize 8 60 2 3>&1 1>&2 2>&3 3>&- ) ;;
+   1) sizerootpartition="no" ;;
    255) exit 1;;
 esac
 
@@ -106,7 +115,7 @@ homepartition=$?
 
 case $homepartition in
    0) sizehomepartition=$(dialog --title "/home Size" \
-      --inputbox "Enter a size for the /home partition (ex: 512M or 1G)" 8 60 2 3>&1 1>&2 2>&3 3>&- ) ;;
+      --inputbox "Enter a size for the /home partition (ex: 512M or 1G)" 8 60 2 --backtitle Size of the disk \: ${DISKSIZE} , size of the swap: $swapsize, size of the / partition $sizerootpartition 3>&1 1>&2 2>&3 3>&- ) ;;
    1) sizehomepartition="no" ;;
    255) exit 1;;
 esac
