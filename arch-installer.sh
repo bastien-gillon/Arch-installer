@@ -72,7 +72,7 @@ dialog --title "Disk Choice"\
  --menu "choose on which disk you want to install archlinux : "  20 70 10 \
  $option 3>&1 1>&2 2>&3 3>&- )
 
-DISK=${MENU_OPTIONS[$DISKID]}
+DISK=${MENU_OPTIONS[$DISKID+1]}
 
 #echo "you choose the disk ${DISK}"
 
@@ -86,7 +86,7 @@ do
        TABSIZE[$COUNT]="$i"
 done
 
-DISKSIZE=${TABSIZE[$DISKID]} 
+DISKSIZE=${TABSIZE[$DISKID+1]} 
 echo $DISK
 echo $DISKSIZE
 exit
