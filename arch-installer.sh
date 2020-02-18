@@ -95,7 +95,7 @@ swap=$?
 case $swap in
    0)  swapsize=$(dialog --title "Swap Size" \
       --inputbox "Enter a size for the swap partition (ex: 512M or 1G)" \
-       8 60 2 3>&1 1>&2 2>&3 3>&- ) ;;
+       8 60  3>&1 1>&2 2>&3 3>&- ) ;;
      
    1) swapsize="no" ;;
    255) exit ;;
