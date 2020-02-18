@@ -87,14 +87,15 @@ do
 done
 
 DISKSIZE=${TABSIZE[$DISK]} 
-
+echo $DISK
+echo $DISKSIZE
 dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20 3>&1 1>&2 2>&3 3>&- 
 swap=$?
 
 
 case $swap in
    0)  swapsize=$(dialog --title "Swap Size" \
-      --backtitle "Size of the disk : $DISKSIZE" \
+      --backtitle "Size of the disk: $DISKSIZE" \
       --inputbox "Enter a size for the swap partition (ex: 512M or 1G)" 8 60 3>&1 1>&2 2>&3 3>&- )
        ;;
      
@@ -107,7 +108,7 @@ rootpartition=$?
 
 case $rootpartition in
    0) sizerootpartition=$(dialog --title "/ Size" \
-      --backtitle "Size of the disk \: $DISKSIZE , size of the swap: $swapsize" \
+      --backtitle "Size of the disk: $DISKSIZE , size of the swap: $swapsize" \
       --inputbox "Enter a size for the / partition (ex: 512M or 1G)" 8 60  3>&1 1>&2 2>&3 3>&- ) ;;
    1) sizerootpartition="no" ;;
    255) exit 1;;
