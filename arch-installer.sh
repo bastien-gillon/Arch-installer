@@ -86,7 +86,7 @@ do
        TABSIZE[$COUNT]="$i"
 done
 
-DISKSIZE=${TABSIZE[$DISK]} 
+DISKSIZE=${TABSIZE[$DISKID]} 
 echo $DISK
 echo $DISKSIZE
 exit
