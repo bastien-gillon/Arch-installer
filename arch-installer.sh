@@ -141,3 +141,4 @@ if [ $system == "efi" ];then
    mkfs.vfat -F32 /dev/sda1 #boot
    mkfs.ext4 -f /dev/sda3	 #"/"
    mkfs.ext4 -f /dev/sda4	 #home
+fi
