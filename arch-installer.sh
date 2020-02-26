@@ -75,6 +75,7 @@ do
 done
 
 DISKSIZE=${TABSIZE[$DISKID+1]} 
+
 dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20 3>&1 1>&2 2>&3 3>&- 
 swap=$?
 
@@ -114,8 +115,13 @@ esac
 echo "$swapsize"
 echo "$sizerootpartition"
 echo "$sizehomepartition"
-#  if [ choiceS = "y" || choiceS = "Y" ], then
-#        echo -e "Enter the size of the partition "
+
+echo ${swapsize%?}
+echo ${sizerootpartition%?}
+echo ${sizehomepartition%?}
+
+if [ $swapsize != "no" ];then
+      echo -e "Enter the size of the partition "
   
 #  else
   
