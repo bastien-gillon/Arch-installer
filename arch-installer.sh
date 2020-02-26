@@ -120,6 +120,7 @@ echo ${swapsize%?}
 echo ${sizerootpartition%?}
 echo ${sizehomepartition%?}
 
-echo ${swapsize?%}
-echo ${sizerootpartition?%}
-echo ${sizehomepartition?%}
+
+echo ${swapsize: -1}
+echo ${sizerootpartition: -1}
+echo ${sizehomepartition: -1}
