@@ -116,14 +116,35 @@ echo "$swapsize"
 echo "$sizerootpartition"
 echo "$sizehomepartition"
 
+## only numbers
+
 echo ${swapsize%?}
 echo ${sizerootpartition%?}
 echo ${sizehomepartition%?}
 
+## only Letter
 
 echo ${swapsize: -1}
 echo ${sizerootpartition: -1}
 echo ${sizehomepartition: -1} 
+
+if [ ${swapsize: -1} == "M" ] || [ ${swapsize: -1} == "m" ];then 
+
+   let "swapsize={swapsize%?}/100"
+
+fi
+
+if [ ${sizerootpartition: -1} == "M" ] || [ ${sizerootpartition: -1} == "m" ];then 
+
+   let "sizerootpartition={sizerootpartition%?}/100"
+
+fi
+
+if [ ${sizehomepartition: -1} == "M" ] || [ ${sizehomepartition: -1} == "m" ];then 
+
+   let "sizehomepartition={sizehomepartition%?}/100"
+
+fi
 
 if [ $system == "efi" ];then
 
