@@ -123,4 +123,21 @@ echo ${sizehomepartition%?}
 
 echo ${swapsize: -1}
 echo ${sizerootpartition: -1}
-echo ${sizehomepartition: -1}
+echo ${sizehomepartition: -1} 
+
+if [ $system == "efi" ];then
+
+   parted /dev/$DISK
+
+   mklabel gpt
+   yes
+   mkpart ESP fat32 0 1G				#boot
+   mkpart primary linux-swap 1G $[{swapsize%?}+1]	#swap
+   mkpart primary ext4 $[{swapsize%?}+1]  $[{sizerootpartition%?}+1]		#"/"
+   mkpart primary ext4 $[{sizerootpartition%?}+1]  100%		#home
+
+   quit 
+
+   mkfs.vfat -F32 /dev/sda1 #boot
+   mkfs.ext4 -f /dev/sda3	 #"/"
+   mkfs.ext4 -f /dev/sda4	 #home
