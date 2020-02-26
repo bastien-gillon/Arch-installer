@@ -76,7 +76,7 @@ done
 
 DISKSIZE=${TABSIZE[$DISKID+1]} 
 
-dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 6 20 3>&1 1>&2 2>&3 3>&- 
+dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 10 60 3>&1 1>&2 2>&3 3>&- 
 swap=$?
 
 
@@ -90,7 +90,7 @@ case $swap in
    255) exit ;;
 esac
 
-dialog --title "/"  --yesno "Do you want a \"/\" partition ?" 6 20 3>&1 1>&2 2>&3 3>&- 
+dialog --title "/"  --yesno "Do you want a \"/\" partition ?" 10 60 3>&1 1>&2 2>&3 3>&- 
 rootpartition=$?
 
 case $rootpartition in
@@ -101,7 +101,7 @@ case $rootpartition in
    255) exit 1;;
 esac
 
-dialog --title "/home"  --yesno "Do you want a \"/home\" partition ?" 6 20 3>&1 1>&2 2>&3 3>&- 
+dialog --title "/home"  --yesno "Do you want a \"/home\" partition ?" 10 60 3>&1 1>&2 2>&3 3>&- 
 homepartition=$?
 
 case $homepartition in
@@ -120,11 +120,6 @@ echo ${swapsize%?}
 echo ${sizerootpartition%?}
 echo ${sizehomepartition%?}
 
-if [ $swapsize != "no" ];then
-      echo -e "Enter the size of the partition "
-  
-#  else
-  
-  
-#  fi
-#fi
+echo ${swapsize?%}
+echo ${sizerootpartition?%}
+echo ${sizehomepartition?%}
