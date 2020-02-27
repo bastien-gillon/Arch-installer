@@ -113,7 +113,7 @@ echo ${swapsize: -1}
 echo ${sizerootpartition: -1}
 #echo ${sizehomepartition: -1} 
 
-if [ ${swapsize: -1} -eq "M" ] || [ ${swapsize: -1} -eq "m" ];then 
+if [ ${swapsize: -1} == "M" ] || [ ${swapsize: -1} == "m" ];then 
 
    swapsize=[{swapsize%?}/100]
 
