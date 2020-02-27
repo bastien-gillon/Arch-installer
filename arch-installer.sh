@@ -119,6 +119,8 @@ if [ ${swapsize: -1} == "M" ] || [ ${swapsize: -1} == "m" ];then
    swapsize=$[tmp/100}
 
 fi
+echo swapsize
+exit
 
 if [ ${sizerootpartition: -1} == "M" ] || [ ${sizerootpartition: -1} == "m" ];then 
 
