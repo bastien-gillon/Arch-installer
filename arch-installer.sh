@@ -77,12 +77,11 @@ done
 DISKSIZE=${TABSIZE[$DISKID+1]} 
 
 dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 10 60 3>&1 1>&2 2>&3 3>&- 
-
 swap=$?
 
 
 case $swap in
-   0)  swapsize=$(dialog --title "Swap Size" --backtitle "Size of the disk: $DISKSIZE" --inputbox "Enter a size for the swap partition ( Suggested size: 512M, 1G or more)" 10 100 3>&1 1>&2 2>&3 3>&- ) ;;   
+   0)  swapsize=$(dialog --title "Swap Size" --backtitle "Size of the disk: $DISKSIZE" --inputbox "Enter a size for the swap partition ( Suggested size: 512M, 1G or more)" 10 80 3>&1 1>&2 2>&3 3>&- ) ;;   
    1) swapsize="no" ;;
    255) exit ;;
 esac
@@ -103,15 +102,15 @@ sizerootpartition=$(dialog --title "/ Size" \
 
 echo ${swapsize%?}
 echo ${sizerootpartition%?}
-echo ${sizehomepartition%?}
+#echo ${sizehomepartition%?}
 
 ## only Letter
 
 echo ${swapsize: -1}
 echo ${sizerootpartition: -1}
-echo ${sizehomepartition: -1} 
+#echo ${sizehomepartition: -1} 
 
-if [ ${swapsize: -1} == "M" ] || [ ${swapsize: -1} == "m" ];then 
+if [ ${swapsize: -1} -eq "M" ] || [ ${swapsize: -1} -eq "m" ];then 
 
    let "swapsize={swapsize%?}/100"
 
@@ -130,7 +129,7 @@ if [ ${sizehomepartition: -1} == "M" ] || [ ${sizehomepartition: -1} == "m" ];th
 fi
 echo "$swapsize"
 echo "$sizerootpartition"
-echo "$sizehomepartition"
+#echo "$sizehomepartition"
 
 if [ $system == "efi" ];then
 
