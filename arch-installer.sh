@@ -93,11 +93,11 @@ esac
 
 sizerootpartition=$(dialog --title "/ Size" \
    --backtitle "Size of the disk: $DISKSIZE , size of the swap: $swapsize" \
-   --inputbox "Enter a size for the / partition (ex: 512M or 1G)" 8 60  3>&1 1>&2 2>&3 3>&- ) ;;
+   --inputbox "Enter a size for the / partition (ex: 512M or 1G)" 8 60  3>&1 1>&2 2>&3 3>&- ) 
 
 sizehomepartition=$(dialog --title "/home Size" \
    --backtitle "Size of the disk \: $DISKSIZE , size of the swap: $swapsize, size of the / partition $sizerootpartition" \
-   --inputbox "Enter a size for the /home partition (ex: 512M or 1G)"  8 60 3>&1 1>&2 2>&3 3>&- ) ;;
+   --inputbox "Enter a size for the /home partition (ex: 512M or 1G)"  8 60 3>&1 1>&2 2>&3 3>&- ) 
 
 
 
