@@ -76,7 +76,7 @@ done
 
 DISKSIZE=${TABSIZE[$DISKID+1]} 
 
-dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 10 60 3>&1 1>&2 2>&3 3>&- 
+dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" #10 60 3>&1 1>&2 2>&3 3>&- 
 swap=$?
 
 
@@ -93,7 +93,7 @@ esac
 
 sizerootpartition=$(dialog --title "/ Size" \
    --backtitle "Size of the disk: $DISKSIZE , size of the swap: $swapsize" \
-   --inputbox "Enter a size for the / partition ( Suggested size: 23–32 GiB )" 8 60  3>&1 1>&2 2>&3 3>&- ) 
+   --inputbox "Enter a size for the / partition ( Suggested size: 23-32G )" 8 60  3>&1 1>&2 2>&3 3>&- ) 
 
 #sizehomepartition=$(dialog --title "/home Size" \
 #   --backtitle "Size of the disk \: $DISKSIZE , size of the swap: $swapsize, size of the / partition $sizerootpartition" \
