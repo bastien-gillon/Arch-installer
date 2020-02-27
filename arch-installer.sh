@@ -130,7 +130,7 @@ echo "$sizerootpartition"
 
 if [ $system == "efi" ];then
 
-   parted /dev/$DISK mklabel gpt | yes mkpart ESP fat32 0 1G	
+   parted /dev/$DISK mklabel gpt | yes | mkpart ESP fat32 0 1G	
 
    
 fi
