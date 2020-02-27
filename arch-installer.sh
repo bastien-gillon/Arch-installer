@@ -118,8 +118,8 @@ if [ ${swapsize: -1} == "M" ] || [ ${swapsize: -1} == "m" ];then
 
    bc -l <<< "scale=3; ${tmp}/1000"
    swapsize=$?
-   tmp
-   swapsize="$swapsize G"
+   tmp="G"
+   swapsize=$swapsize$tmp
 
 fi
 
@@ -127,7 +127,9 @@ tmp=${sizerootpartition%?}
 if [ ${sizerootpartition: -1} == "M" ] || [ ${sizerootpartition: -1} == "m" ];then 
 
    bc -l <<< "scale=3; ${sizerootpartition}/1000"
-   sizerootpartition="$sizerootpartition G"
+   sizerootpartition=$?
+   tmp="G"
+   sizerootpartition=$sizerootpartition$tmp
 fi
 
 echo "$swapsize"
@@ -136,7 +138,7 @@ echo "$sizerootpartition"
 
 if [ $system == "efi" ];then
 
-   parted /dev/$DISK mklabel gpt  yes mkpart ESP fat32 0 1G	
+   parted /dev/$DISK mklabel gpt yes mkpart ESP fat32 0 1G	
 
    
 fi
