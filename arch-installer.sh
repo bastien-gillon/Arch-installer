@@ -82,8 +82,8 @@ swap=$?
 
 case $swap in
    0)  swapsize=$(dialog --title "Swap Size" \
-      --backtitle "Size of the disk: $DISKSIZE" \
-      --inputbox "Enter a size for the swap partition (ex: 512M or 1G)" 8 60 3>&1 1>&2 2>&3 3>&- )
+      --backtitle "Size of the disk: $DISKSIZE" \ 
+      --inputbox "Enter a size for the swap partition ( Suggested size: 512M, 1G or more)" 8 60 3>&1 1>&2 2>&3 3>&- )
        ;;
      
    1) swapsize="no" ;;
@@ -93,11 +93,11 @@ esac
 
 sizerootpartition=$(dialog --title "/ Size" \
    --backtitle "Size of the disk: $DISKSIZE , size of the swap: $swapsize" \
-   --inputbox "Enter a size for the / partition (ex: 512M or 1G)" 8 60  3>&1 1>&2 2>&3 3>&- ) 
+   --inputbox "Enter a size for the / partition ( Suggested size: 23–32 GiB )" 8 60  3>&1 1>&2 2>&3 3>&- ) 
 
-sizehomepartition=$(dialog --title "/home Size" \
-   --backtitle "Size of the disk \: $DISKSIZE , size of the swap: $swapsize, size of the / partition $sizerootpartition" \
-   --inputbox "Enter a size for the /home partition (ex: 512M or 1G)"  8 60 3>&1 1>&2 2>&3 3>&- ) 
+#sizehomepartition=$(dialog --title "/home Size" \
+#   --backtitle "Size of the disk \: $DISKSIZE , size of the swap: $swapsize, size of the / partition $sizerootpartition" \
+#   --inputbox "Enter a size for the /home partition "  8 60 3>&1 1>&2 2>&3 3>&- ) 
 
 
 
@@ -122,13 +122,13 @@ fi
 
 if [ ${sizerootpartition: -1} == "M" ] || [ ${sizerootpartition: -1} == "m" ];then 
 
-   let "sizerootpartition={sizerootpartition%?}/100"
+   let "sizerootpartition[{sizerootpartition%?}/100]"
 
 fi
 
 if [ ${sizehomepartition: -1} == "M" ] || [ ${sizehomepartition: -1} == "m" ];then 
 
-   let "sizehomepartition={sizehomepartition%?}/100"
+   let "sizehomepartition=[{sizehomepartition%?}/100]"
 
 fi
 echo "$swapsize"
