@@ -116,11 +116,11 @@ echo ${sizerootpartition: -1}
 tmp=${swapsize%?}
 if [ ${swapsize: -1} == "M" ] || [ ${swapsize: -1} == "m" ];then 
 
-   bc -l <<<'scale=3;$tmp/1000'
+   bc -l <<< "scale=3; ${tmp}/1000"
    swapsize=$?
 
 fi
-echo swapsize
+echo $swapsize
 exit
 
 if [ ${sizerootpartition: -1} == "M" ] || [ ${sizerootpartition: -1} == "m" ];then 
