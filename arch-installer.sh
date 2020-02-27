@@ -113,9 +113,10 @@ echo ${swapsize: -1}
 echo ${sizerootpartition: -1}
 #echo ${sizehomepartition: -1} 
 
+tmp=${swapsize%?}
 if [ ${swapsize: -1} == "M" ] || [ ${swapsize: -1} == "m" ];then 
 
-   swapsize=${{swapsize%?}/100}
+   swapsize=$[tmp/100}
 
 fi
 
