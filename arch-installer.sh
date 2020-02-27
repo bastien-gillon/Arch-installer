@@ -76,7 +76,8 @@ done
 
 DISKSIZE=${TABSIZE[$DISKID+1]} 
 
-dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" #10 60 3>&1 1>&2 2>&3 3>&- 
+dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 10 60 3>&1 1>&2 2>&3 3>&- 
+
 swap=$?
 
 
