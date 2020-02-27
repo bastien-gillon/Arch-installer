@@ -112,9 +112,7 @@ case $homepartition in
    255) exit 1;;
 esac
 
-echo "$swapsize"
-echo "$sizerootpartition"
-echo "$sizehomepartition"
+
 
 ## only numbers
 
@@ -145,6 +143,10 @@ if [ ${sizehomepartition: -1} == "M" ] || [ ${sizehomepartition: -1} == "m" ];th
    let "sizehomepartition={sizehomepartition%?}/100"
 
 fi
+
+echo "$swapsize"
+echo "$sizerootpartition"
+echo "$sizehomepartition"
 
 if [ $system == "efi" ];then
 
