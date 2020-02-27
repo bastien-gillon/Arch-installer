@@ -92,7 +92,7 @@ esac
 
 sizerootpartition=$(dialog --title "/ Size" \
    --backtitle "Size of the disk: $DISKSIZE , size of the swap: $swapsize" \
-   --inputbox "Enter a size for the / partition ( Suggested size: 23-32G )" 8 60  3>&1 1>&2 2>&3 3>&- ) 
+   --inputbox "Enter a size for the / partition ( Suggested size: 23-32G )" 8 80  3>&1 1>&2 2>&3 3>&- ) 
 
 #sizehomepartition=$(dialog --title "/home Size" \
 #   --backtitle "Size of the disk \: $DISKSIZE , size of the swap: $swapsize, size of the / partition $sizerootpartition" \
@@ -116,20 +116,12 @@ echo ${sizerootpartition: -1}
 tmp=${swapsize%?}
 if [ ${swapsize: -1} == "M" ] || [ ${swapsize: -1} == "m" ];then 
 
+   # to do parted when swap in M
    bc -l <<< "scale=3; ${tmp}/1000"
    swapsize=$?
    tmp="G"
    swapsize=$swapsize$tmp
 
-fi
-
-tmp=${sizerootpartition%?}
-if [ ${sizerootpartition: -1} == "M" ] || [ ${sizerootpartition: -1} == "m" ];then 
-
-   bc -l <<< "scale=3; ${sizerootpartition}/1000"
-   sizerootpartition=$?
-   tmp="G"
-   sizerootpartition=$sizerootpartition$tmp
 fi
 
 echo "$swapsize"
@@ -138,7 +130,7 @@ echo "$sizerootpartition"
 
 if [ $system == "efi" ];then
 
-   parted /dev/$DISK mklabel gpt yes mkpart ESP fat32 0 1G	
+   parted /dev/$DISK mklabel gpt | yes mkpart ESP fat32 0 1G	
 
    
 fi
