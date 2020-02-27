@@ -82,11 +82,7 @@ swap=$?
 
 
 case $swap in
-   0)  swapsize=$(dialog --title "Swap Size" \
-      --backtitle "Size of the disk: $DISKSIZE" \ 
-      --inputbox "Enter a size for the swap partition ( Suggested size: 512M, 1G or more)" 8 60 3>&1 1>&2 2>&3 3>&- )
-      ;;
-     
+   0)  swapsize=$(dialog --title "Swap Size" --backtitle "Size of the disk: $DISKSIZE" --inputbox "Enter a size for the swap partition ( Suggested size: 512M, 1G or more)" 10 100 3>&1 1>&2 2>&3 3>&- ) ;;   
    1) swapsize="no" ;;
    255) exit ;;
 esac
