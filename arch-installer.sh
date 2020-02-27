@@ -152,3 +152,4 @@ if [ $system == "efi" ];then
    mkfs.ext4 -f /dev/sda3	 #"/"
    mkfs.ext4 -f /dev/sda4	 #home
 fi
+
