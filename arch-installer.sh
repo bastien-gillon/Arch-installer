@@ -2,7 +2,7 @@
 
 echo "Launch of automatic installation of arch script..."
 
-loadkeys fr
+
 ls /sys/firmware/efi/efivars > /dev/null
 if [ $? -eq 0 ] ; then
     echo "efi systeme"
@@ -90,27 +90,15 @@ case $swap in
    255) exit ;;
 esac
 
-dialog --title "/"  --yesno "Do you want a \"/\" partition ?" 10 60 3>&1 1>&2 2>&3 3>&- 
-rootpartition=$?
 
-case $rootpartition in
-   0) sizerootpartition=$(dialog --title "/ Size" \
-      --backtitle "Size of the disk: $DISKSIZE , size of the swap: $swapsize" \
-      --inputbox "Enter a size for the / partition (ex: 512M or 1G)" 8 60  3>&1 1>&2 2>&3 3>&- ) ;;
-   1) sizerootpartition="no" ;;
-   255) exit 1;;
-esac
+sizerootpartition=$(dialog --title "/ Size" \
+   --backtitle "Size of the disk: $DISKSIZE , size of the swap: $swapsize" \
+   --inputbox "Enter a size for the / partition (ex: 512M or 1G)" 8 60  3>&1 1>&2 2>&3 3>&- ) ;;
 
-dialog --title "/home"  --yesno "Do you want a \"/home\" partition ?" 10 60 3>&1 1>&2 2>&3 3>&- 
-homepartition=$?
+sizehomepartition=$(dialog --title "/home Size" \
+   --backtitle "Size of the disk \: $DISKSIZE , size of the swap: $swapsize, size of the / partition $sizerootpartition" \
+   --inputbox "Enter a size for the /home partition (ex: 512M or 1G)"  8 60 3>&1 1>&2 2>&3 3>&- ) ;;
 
-case $homepartition in
-   0) sizehomepartition=$(dialog --title "/home Size" \
-      --backtitle "Size of the disk \: $DISKSIZE , size of the swap: $swapsize, size of the / partition $sizerootpartition" \
-      --inputbox "Enter a size for the /home partition (ex: 512M or 1G)"  8 60 3>&1 1>&2 2>&3 3>&- ) ;;
-   1) sizehomepartition="no" ;;
-   255) exit 1;;
-esac
 
 
 
@@ -143,7 +131,6 @@ if [ ${sizehomepartition: -1} == "M" ] || [ ${sizehomepartition: -1} == "m" ];th
    let "sizehomepartition={sizehomepartition%?}/100"
 
 fi
-
 echo "$swapsize"
 echo "$sizerootpartition"
 echo "$sizehomepartition"
