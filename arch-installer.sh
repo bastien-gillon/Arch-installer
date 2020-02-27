@@ -115,21 +115,16 @@ echo ${sizerootpartition: -1}
 
 if [ ${swapsize: -1} -eq "M" ] || [ ${swapsize: -1} -eq "m" ];then 
 
-   let "swapsize={swapsize%?}/100"
+   swapsize=[{swapsize%?}/100]
 
 fi
 
 if [ ${sizerootpartition: -1} == "M" ] || [ ${sizerootpartition: -1} == "m" ];then 
 
-   let "sizerootpartition[{sizerootpartition%?}/100]"
+   sizerootpartition=[{sizerootpartition%?}/100]
 
 fi
 
-if [ ${sizehomepartition: -1} == "M" ] || [ ${sizehomepartition: -1} == "m" ];then 
-
-   let "sizehomepartition=[{sizehomepartition%?}/100]"
-
-fi
 echo "$swapsize"
 echo "$sizerootpartition"
 #echo "$sizehomepartition"
