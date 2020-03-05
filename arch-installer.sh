@@ -145,39 +145,11 @@ if [ $system == "efi" ];then
 
    parted /dev/$DISK mkpart primary ext4  $swapsize  $sizerootpartition
    parted /dev/$DISK mkpart primary ext4  $sizerootpartition 100%
-    
-
-
-fdisk /dev/$DISKID<< FDISK_CMDS 
-   g      # create new GPT partition
-   n      # add new partition
-   1      # partition number
-         # default - first sector 
-   +64MiB # partition size
-   n      # add new partition
-   2      # partition number
-         # default - first sector 
-         # default - last sector 
-   t      # change partition type
-   1      # partition number
-   83     # Linux filesystem
-   t      # change partition type
-   2      # partition number
-   83     # Linux filesystem
-   w      # write partition table and exit
-FDISK_CMDS
-
-fi
-exit  
-   mkpart ESP fat32 0 1G				#boot
-   mkpart primary linux-swap 1G $[{swapsize%?}+1]	#swap
-   mkpart primary ext4 $[{swapsize%?}+1]  $[{sizerootpartition%?}+1]		#"/"
-   mkpart primary ext4 $[{sizerootpartition%?}+1]  100%		#home
-
-   quit 
 
    mkfs.vfat -F32 /dev/sda1 #boot
    mkfs.ext4 -f /dev/sda3	 #"/"
    mkfs.ext4 -f /dev/sda4	 #home
+    
 fi
+
 
