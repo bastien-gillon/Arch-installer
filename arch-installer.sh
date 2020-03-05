@@ -132,9 +132,10 @@ if [ $system == "efi" ];then
 
    swapsize=${swapsize%?}
    swapsize=$[swapsize+1]
-   echo $swapsize
    parted /dev/$DISK mklabel gpt 
    parted /dev/$DISK mkpart ESP fat32 0 1G
+   tmp="G"
+   swapsize=$swapsize$tmp
    parted /dev/$DISK mkpart primary linux-swap 1G $swapsize
    exit
 
