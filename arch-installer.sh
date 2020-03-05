@@ -131,11 +131,10 @@ echo "$sizerootpartition"
 if [ $system == "efi" ];then
 
    swapsize=${swapsize%?}
+   swapsize=$[swapsize+1]
    parted /dev/$DISK mklabel gpt 
    parted /dev/$DISK mkpart ESP fat32 0 1G
-   echo "$swapsize"
-   exit
-   parted /dev/$DISK mkpart primary linux-swap 1G $[swapsize+1]
+   parted /dev/$DISK mkpart primary linux-swap 1G 
    exit
 
 fdisk /dev/$DISKID<< FDISK_CMDS 
