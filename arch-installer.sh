@@ -146,9 +146,12 @@ if [ $system == "efi" ];then
    parted /dev/$DISK mkpart primary ext4  $swapsize  $sizerootpartition
    parted /dev/$DISK mkpart primary ext4  $sizerootpartition 100%
 
+   
+   mkswap /dev/sda2
+   swapon /dev/sda2
    mkfs.vfat -F32 /dev/sda1 #boot
-   mkfs.ext4 -f /dev/sda3	 #"/"
-   mkfs.ext4 -f /dev/sda4	 #home
+   mkfs.ext4 /dev/sda3	 #"/"
+   mkfs.ext4 /dev/sda4	 #home
     
 fi
 
