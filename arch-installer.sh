@@ -134,7 +134,7 @@ if [ $system == "efi" ];then
    swapsize=$[swapsize+1]
    parted /dev/$DISK mklabel gpt 
    parted /dev/$DISK mkpart ESP fat32 0 1G
-   parted /dev/$DISK mkpart primary linux-swap 1G 
+   parted /dev/$DISK mkpart primary linux-swap 1G $swapsize
    exit
 
 fdisk /dev/$DISKID<< FDISK_CMDS 
