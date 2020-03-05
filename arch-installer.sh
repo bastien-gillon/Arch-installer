@@ -130,14 +130,23 @@ echo "$sizerootpartition"
 
 if [ $system == "efi" ];then
 
+   tmp="G"
    swapsize=${swapsize%?}
    swapsize=$[swapsize+1]
+   swapsize=$swapsize$tmp
+
    parted /dev/$DISK mklabel gpt 
    parted /dev/$DISK mkpart ESP fat32 0 1G
-   tmp="G"
-   swapsize=$swapsize$tmp
    parted /dev/$DISK mkpart primary linux-swap 1G $swapsize
-   exit
+
+   sizerootpartition=${sizerootpartition%?}
+   sizerootpartition=$[sizerootpartition+1]
+   sizerootpartition=$sizerootpartition$tmp
+
+   parted /dev/$DISK mkpart primary ext4  $swapsize  $sizerootpartition
+   parted /dev/$DISK mkpart primary ext4  $sizerootpartition 100%
+    
+
 
 fdisk /dev/$DISKID<< FDISK_CMDS 
    g      # create new GPT partition
