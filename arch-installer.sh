@@ -130,12 +130,32 @@ echo "$sizerootpartition"
 
 if [ $system == "efi" ];then
 
-   parted /dev/$DISK mklabel gpt | yes 
-   exit 
-   parted /dev/$DISK | mkpart ESP fat32 0 1G	
    swapsize=${swapsize%?}
-   parted /dev/$DISK | mkpart primary linux-swap 1G $[swapsize+1]
-   
+   parted /dev/$DISK mklabel gpt \
+   yes \
+   mkpart ESP fat32 0 1G \	
+   mkpart primary linux-swap 1G $[swapsize+1]
+   exit
+
+fdisk /dev/$DISKID<< FDISK_CMDS 
+   g      # create new GPT partition
+   n      # add new partition
+   1      # partition number
+         # default - first sector 
+   +64MiB # partition size
+   n      # add new partition
+   2      # partition number
+         # default - first sector 
+         # default - last sector 
+   t      # change partition type
+   1      # partition number
+   83     # Linux filesystem
+   t      # change partition type
+   2      # partition number
+   83     # Linux filesystem
+   w      # write partition table and exit
+FDISK_CMDS
+
 fi
 exit  
    mkpart ESP fat32 0 1G				#boot
