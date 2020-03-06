@@ -85,7 +85,7 @@ case $swap in
       --backtitle "Size of the disk: $DISKSIZE" \
       --inputbox "Enter a size for the swap partition (ex: 512M or 1G)" 8 60 3>&1 1>&2 2>&3 3>&- )
        ;;
-   1) swapsize="no" ;;
+   1) swapsize=0 ;;
    255) exit ;;
 esac
 
@@ -130,28 +130,65 @@ echo "$sizerootpartition"
 
 if [ $system == "efi" ];then
 
+  parted /dev/$DISK mklabel gpt 
+  parted /dev/$DISK mkpart ESP fat32 0 1G
+
+  if [ $swap -eq 0 ];then
+
    tmp="G"
    swapsize=${swapsize%?}
    swapsize=$[swapsize+1]
    swapsize=$swapsize$tmp
 
-   parted /dev/$DISK mklabel gpt 
-   parted /dev/$DISK mkpart ESP fat32 0 1G
+   sizerootpartition=${sizerootpartition%?}
+   sizerootpartition=$[sizerootpartition+1]
+   sizerootpartition=$sizerootpartition$tmp
+
+   
    parted /dev/$DISK mkpart primary linux-swap 1G $swapsize
+   parted /dev/$DISK mkpart primary ext4  $swapsize  $sizerootpartition
+   parted /dev/$DISK mkpart primary ext4  $sizerootpartition 100%
+
+   $tmp1="1"
+   $tmp2="2"
+   $tmp3="3"
+   $tmp4="4"
+   $disk1=$DISKID$tmp1
+   $disk2=$DISKID$tmp2
+   $disk3=$DISKID$tmp3
+   $disk4=$DISKID$tmp4
+   
+   mkswap /dev/$disk2
+   swapon /dev/$disk2
+   mkfs.vfat -F32 /dev/$disk1 #boot
+   mkfs.ext4 /dev/$disk3	    #"/"
+   mkfs.ext4 /dev/$disk4	    #home
+
+   else 
+
+  tmp="G"
 
    sizerootpartition=${sizerootpartition%?}
    sizerootpartition=$[sizerootpartition+1]
    sizerootpartition=$sizerootpartition$tmp
 
-   parted /dev/$DISK mkpart primary ext4  $swapsize  $sizerootpartition
+   parted /dev/$DISK mkpart primary ext4  1G  $sizerootpartition
    parted /dev/$DISK mkpart primary ext4  $sizerootpartition 100%
 
+   $tmp1="1"
+   $tmp2="2"
+   $tmp3="3"
+
+   $disk1=$DISKID$tmp1
+   $disk2=$DISKID$tmp2
+   $disk3=$DISKID$tmp3
    
-   mkswap /dev/sda2
-   swapon /dev/sda2
-   mkfs.vfat -F32 /dev/sda1 #boot
-   mkfs.ext4 /dev/sda3	 #"/"
-   mkfs.ext4 /dev/sda4	 #home
+   mkfs.vfat -F32 /dev/$disk1 #boot
+   mkfs.ext4 /dev/$disk2	    #"/"
+   mkfs.ext4 /dev/$disk3	    #home
+   
+   
+   fi
     
 fi
 
