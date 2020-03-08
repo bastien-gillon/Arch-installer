@@ -65,7 +65,7 @@ DISK=${MENU_OPTIONS[$DISKID+1]}
 #echo "you choose the disk ${DISK}"
 
 if dialog --stdout --title "Disk Choice" \
-          --yesno "Are you sure you want to choose this ${DISK} ? Everything will be erased on this disc" 20 40; 
+          --yesno "Are you sure you want to choose this ${DISK} ? Everything will be erased on this disc" 40 20; 
 then
  #!--------------------------------------Partition----------------------------------------!#
  
@@ -152,14 +152,14 @@ if [ $system == "efi" ];then
    parted /dev/$DISK mkpart primary ext4  $swapsize  $sizerootpartition
    parted /dev/$DISK mkpart primary ext4  $sizerootpartition 100%
 
-   $tmp1=1
-   $tmp2=2
-   $tmp3=3
-   $tmp4=4
-   $disk1=$DISKID$tmp1
-   $disk2=$DISKID$tmp2
-   $disk3=$DISKID$tmp3
-   $disk4=$DISKID$tmp4
+   tmp1="1"
+   tmp2="2"
+   tmp3="3"
+   tmp4="4"
+   disk1=$DISKID$tmp1
+   disk2=$DISKID$tmp2
+   disk3=$DISKID$tmp3
+   disk4=$DISKID$tmp4
    
    mkswap /dev/$disk2
    swapon /dev/$disk2
