@@ -64,8 +64,14 @@ DISK=${MENU_OPTIONS[$DISKID+1]}
 
 #echo "you choose the disk ${DISK}"
 
+if dialog --stdout --title "Are you sure you want to choose this ${DISK} ? Everything will be erased on this disc " 
+          --backtitle "Warning" \
+          --yesno "Yes: Delete, No: exit" 7 60; 
+then
+ #!--------------------------------------Partition----------------------------------------!#
+ 
 
-#!--------------------------------------Partition----------------------------------------!#
+(pv -n /dev/sda | dd if=/dev/zero of=/dev/${DISK} bs=1M status=progress conv=notrunc,noerror) 2&gt;&amp;1 | dialog --gauge "Running dd command (erasing ${DISK}), please wait..." 10 70 0
 
 COUNT=0
  for i in $(lsblk -o SIZE)
@@ -164,32 +170,38 @@ if [ $system == "efi" ];then
    mkfs.ext4 /dev/$disk3	    #"/"
    mkfs.ext4 /dev/$disk4	    #home
 
-   else 
+  else 
 
-  tmp="G"
+    tmp="G"
 
-   sizerootpartition=${sizerootpartition%?}
-   sizerootpartition=$[sizerootpartition+1]
-   sizerootpartition=$sizerootpartition$tmp
+    sizerootpartition=${sizerootpartition%?}
+    sizerootpartition=$[sizerootpartition+1]
+    sizerootpartition=$sizerootpartition$tmp
 
-   parted /dev/$DISK mkpart primary ext4  1G  $sizerootpartition
-   parted /dev/$DISK mkpart primary ext4  $sizerootpartition 100%
+    parted /dev/$DISK mkpart primary ext4  1G  $sizerootpartition
+    parted /dev/$DISK mkpart primary ext4  $sizerootpartition 100%
 
-   $tmp1="1"
-   $tmp2="2"
-   $tmp3="3"
+    $tmp1="1"
+    $tmp2="2"
+    $tmp3="3"
 
-   $disk1=$DISKID$tmp1
-   $disk2=$DISKID$tmp2
-   $disk3=$DISKID$tmp3
-   
-   mkfs.vfat -F32 /dev/$disk1 #boot
-   mkfs.ext4 /dev/$disk2	    #"/"
-   mkfs.ext4 /dev/$disk3	    #home
-   
-   
-   fi
+    $disk1=$DISKID$tmp1
+    $disk2=$DISKID$tmp2
+    $disk3=$DISKID$tmp3
+    
+    mkfs.vfat -F32 /dev/$disk1 #boot
+    mkfs.ext4 /dev/$disk2	    #"/"
+    mkfs.ext4 /dev/$disk3	    #home
+    
+  fi
     
 fi
+else
+    exit;;
+fi
+
+
+
+
 
 
