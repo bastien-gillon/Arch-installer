@@ -69,7 +69,7 @@ if dialog --stdout --title "Disk Choice" \
 then
  #!--------------------------------------Partition----------------------------------------!#
  
-(pv -n /dev/zero | dd of=/dev/${DSIK} bs=1M conv=notrunc,noerror) 2&gt;&amp;1 | dialog --gauge "Running dd command (erasing ${DISK}), please wait..." 10 70 0
+(pv -n /dev/zero | dd of=/dev/${DSIK} bs=1M conv=notrunc,noerror) | dialog --gauge "Running dd command (erasing ${DISK}), please wait..." 10 70 0
 COUNT=0
  for i in $(lsblk -o SIZE)
 do
