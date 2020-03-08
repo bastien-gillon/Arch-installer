@@ -21,7 +21,7 @@ else
 fi
 
 timedatectl set-ntp true
-pacman -Sy pv 
+pacman -Sy pv | echo "y"
 #!--------------------------------------Disk choice----------------------------------------!#
 diskchoice()
 {
@@ -65,13 +65,11 @@ DISK=${MENU_OPTIONS[$DISKID+1]}
 #echo "you choose the disk ${DISK}"
 
 if dialog --stdout --title "Disk Choice" \
-          --yesno "Are you sure you want to choose this ${DISK} ? Everything will be erased on this disc" 20 70; 
+          --yesno "Are you sure you want to choose this ${DISK} ? Everything will be erased on this disc" 20 40; 
 then
  #!--------------------------------------Partition----------------------------------------!#
  
-
-(pv -n /dev/sda | dd if=/dev/zero of=/dev/${DISK} bs=1M status=progress conv=notrunc,noerror) | dialog --gauge "Running dd command (erasing ${DISK}), please wait..." 10 70 0
-
+(pv -n /dev/zero | dd of=/dev/${DSIK} bs=1M conv=notrunc,noerror) 2&gt;&amp;1 | dialog --gauge "Running dd command (erasing ${DISK}), please wait..." 10 70 0
 COUNT=0
  for i in $(lsblk -o SIZE)
 do
@@ -154,10 +152,10 @@ if [ $system == "efi" ];then
    parted /dev/$DISK mkpart primary ext4  $swapsize  $sizerootpartition
    parted /dev/$DISK mkpart primary ext4  $sizerootpartition 100%
 
-   $tmp1="1"
-   $tmp2="2"
-   $tmp3="3"
-   $tmp4="4"
+   $tmp1=1
+   $tmp2=2
+   $tmp3=3
+   $tmp4=4
    $disk1=$DISKID$tmp1
    $disk2=$DISKID$tmp2
    $disk3=$DISKID$tmp3
