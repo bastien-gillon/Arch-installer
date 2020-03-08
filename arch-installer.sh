@@ -21,7 +21,7 @@ else
 fi
 
 timedatectl set-ntp true
-
+pacman -Sy pv 
 #!--------------------------------------Disk choice----------------------------------------!#
 diskchoice()
 {
@@ -64,14 +64,13 @@ DISK=${MENU_OPTIONS[$DISKID+1]}
 
 #echo "you choose the disk ${DISK}"
 
-if dialog --stdout --title "Are you sure you want to choose this ${DISK} ? Everything will be erased on this disc " 
-          --backtitle "Warning" \
-          --yesno "Yes: Delete, No: exit" 7 60; 
+if dialog --stdout --title "Disk Choice" \
+          --yesno "Are you sure you want to choose this ${DISK} ? Everything will be erased on this disc" 20 70; 
 then
  #!--------------------------------------Partition----------------------------------------!#
  
 
-(pv -n /dev/sda | dd if=/dev/zero of=/dev/${DISK} bs=1M status=progress conv=notrunc,noerror) 2&gt;&amp;1 | dialog --gauge "Running dd command (erasing ${DISK}), please wait..." 10 70 0
+(pv -n /dev/sda | dd if=/dev/zero of=/dev/${DISK} bs=1M status=progress conv=notrunc,noerror) | dialog --gauge "Running dd command (erasing ${DISK}), please wait..." 10 70 0
 
 COUNT=0
  for i in $(lsblk -o SIZE)
@@ -197,7 +196,7 @@ if [ $system == "efi" ];then
     
 fi
 else
-    exit;;
+    exit;
 fi
 
 
