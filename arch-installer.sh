@@ -21,7 +21,7 @@ else
 fi
 
 timedatectl set-ntp true
-pacman -Sy pv | echo "yes"
+pacman -Sy pv --noconfirm
 #!--------------------------------------Disk choice----------------------------------------!#
 diskchoice()
 {
@@ -68,7 +68,8 @@ if dialog --stdout --title "Disk Choice" \
           --yesno "Are you sure you want to choose \" ${DISK} \"? Everything will be erased on this disc" 10 60; 
 then
  #!--------------------------------------Partition----------------------------------------!#
- ( dd if=/dev/zero | pv -n /dev/sda | dd of=/dev/${DISK} bs=4096 ) 2>&1 | dialog --gauge "Running dd command (erasing ${DISK}), please wait..." 10 70 0
+
+ ( dd if=/dev/zero | pv -n /dev/${DISK} | dd of=/dev/${DISK} bs=4096 ) 2>&1 | dialog --gauge "Running dd command (erasing ${DISK}), please wait..." 10 70 0
 
 COUNT=0
  for i in $(lsblk -o SIZE)
@@ -182,9 +183,9 @@ if [ $system == "efi" ];then
     tmp2="2"
     tmp3="3"
 
-    disk1=$DISKID$tmp1
-    disk2=$DISKID$tmp2
-    disk3=$DISKID$tmp3
+    disk1=$DISK$tmp1
+    disk2=$DISK$tmp2
+    disk3=$DISK$tmp3
     
     mkfs.vfat -F32 /dev/$disk1 #boot
     mkfs.ext4 /dev/$disk2	    #"/"
