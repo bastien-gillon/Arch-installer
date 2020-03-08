@@ -151,10 +151,10 @@ if [ $system == "efi" ];then
    parted /dev/$DISK mkpart primary ext4  $swapsize  $sizerootpartition
    parted /dev/$DISK mkpart primary ext4  $sizerootpartition 100%
 
-   tmp1=1
-   tmp2=2
-   tmp3=3
-   tmp4=4
+   tmp1="1"
+   tmp2="2"
+   tmp3="3"
+   tmp4="4"
    disk1=$DISK$tmp1
    disk2=$DISK$tmp2
    disk3=$DISK$tmp3
