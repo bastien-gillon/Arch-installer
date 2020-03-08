@@ -21,7 +21,6 @@ else
 fi
 
 timedatectl set-ntp true
-pacman -Sy pv | echo "y"
 #!--------------------------------------Disk choice----------------------------------------!#
 diskchoice()
 {
@@ -177,9 +176,9 @@ if [ $system == "efi" ];then
     parted /dev/$DISK mkpart primary ext4  1G  $sizerootpartition
     parted /dev/$DISK mkpart primary ext4  $sizerootpartition 100%
 
-    $tmp1="1"
-    $tmp2="2"
-    $tmp3="3"
+    tmp1="1"
+    tmp2="2"
+    tmp3="3"
 
     $disk1=$DISKID$tmp1
     $disk2=$DISKID$tmp2
