@@ -182,9 +182,9 @@ if [ $system == "efi" ];then
     tmp2="2"
     tmp3="3"
 
-    $disk1=$DISKID$tmp1
-    $disk2=$DISKID$tmp2
-    $disk3=$DISKID$tmp3
+    disk1=$DISKID$tmp1
+    disk2=$DISKID$tmp2
+    disk3=$DISKID$tmp3
     
     mkfs.vfat -F32 /dev/$disk1 #boot
     mkfs.ext4 /dev/$disk2	    #"/"
