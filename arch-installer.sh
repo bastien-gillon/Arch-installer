@@ -69,7 +69,6 @@ if dialog --stdout --title "Disk Choice" \
 then
  #!--------------------------------------Partition----------------------------------------!#
  
-(pv -n /dev/zero | dd of=/dev/${DSIK} bs=1M conv=notrunc,noerror) | dialog --gauge "Running dd command (erasing ${DISK}), please wait..." 10 70 0
 COUNT=0
  for i in $(lsblk -o SIZE)
 do
@@ -156,10 +155,10 @@ if [ $system == "efi" ];then
    tmp2=2
    tmp3=3
    tmp4=4
-   disk1=$DISKID$tmp1
-   disk2=$DISKID$tmp2
-   disk3=$DISKID$tmp3
-   disk4=$DISKID$tmp4
+   disk1=$DISK$tmp1
+   disk2=$DISK$tmp2
+   disk3=$DISK$tmp3
+   disk4=$DISK$tmp4
    
    mkswap /dev/$disk2
    swapon /dev/$disk2
