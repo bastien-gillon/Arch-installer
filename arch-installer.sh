@@ -69,7 +69,9 @@ if dialog --stdout --title "Disk Choice" \
 then
  #!--------------------------------------Partition----------------------------------------!#
 
- ( dd if=/dev/zero | pv -n /dev/${DISK} | dd of=/dev/${DISK} bs=4096 ) 2>&1 | dialog --gauge "Running dd command (erasing ${DISK}), please wait..." 10 70 0
+# ( dd if=/dev/zero | pv -n /dev/${DISK} | dd of=/dev/${DISK} bs=4096 ) 2>&1 | dialog --gauge "Running dd command (erasing ${DISK}), please wait..." 10 70 0
+
+
 
 COUNT=0
  for i in $(lsblk -o SIZE)
@@ -177,7 +179,9 @@ if [ $system == "efi" ];then
     sizerootpartition=$sizerootpartition$tmp
 
     parted /dev/$DISK mkpart primary ext4  1G  $sizerootpartition
-    parted /dev/$DISK mkpart primary ext4  $sizerootpartition 100%
+    parted /dev/$DISK mkpa web-seed capable client is recommended for fastest download speeds.
+
+    Magnet link for 2020.03.01 rt primary ext4  $sizerootpartition 100%
 
     tmp1="1"
     tmp2="2"
