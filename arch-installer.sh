@@ -233,19 +233,16 @@ dialog --title "Disk Choice"\
  $zoneinfo 3>&1 1>&2 2>&3 3>&- )
 
 
-echo $ZONE
-echo $ZONE
-echo $ZONE
-echo $ZONE
-exit
-hwclock --systohc
-locale-gen
+echo "$ZONE"
 
+exit;
+#hwclock --systohc
+#locale-gen
 #echo LANG="fr_FR.UTF-8" > /etc/locale.conf
 #export LANG=fr_FR.UTF-8
 #echo KEYMAP=fr > /etc/vconsole.conf
-
-mkinitcpio -p linux
+#mkinitcpio -p linux
 #passwd
-umount -R /mnt
-reboot
+#umount -R /mnt
+#reboot
+
