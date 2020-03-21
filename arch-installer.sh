@@ -180,19 +180,21 @@ if [ $system == "efi" ];then
        COUNT=$[COUNT+1]
        NBDISK[$COUNT]="$i"
   done
-   
-  echo ${NBDISK[2]}
-  exit
+
   if [ $(lsblk -o NAME | grep $DISK | wc -l) -eq 5 ];then
     
-    mkswap /dev/$NBDISK[2]
-    swapon /dev/$NBDISK[2]
-    mkfs.vfat -F32 /dev/$NBDISK[1] #boot
-    mkfs.ext4 /dev/$NBDISK[3]	    #"/"
-    mkfs.ext4 /dev/$NBDISK[4]	    #home
+    mkswap /dev/$NBDISK[3]
+    swapon /dev/$NBDISK[3]
+    mkfs.vfat -F32 /dev/$NBDISK[2] #boot
+    mkfs.ext4 /dev/$NBDISK[4]	    #"/"
+    mkfs.ext4 /dev/$NBDISK[5]	    #home
 
   else 
-    echo "yousk"
+
+    mkfs.vfat -F32 /dev/$NBDISK[2] #boot
+    mkfs.ext4 /dev/$NBDISK[4]	    #"/"
+    mkfs.ext4 /dev/$NBDISK[5]	    #home
+
   fi
 fi
 else
