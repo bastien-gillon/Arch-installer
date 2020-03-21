@@ -18,7 +18,15 @@ for i in $(lsblk -o NAME -l | grep $DISK )
  
   fi
 
-mount -t proc proc /mnt/proc
+
+cd /mnt
+mount -t proc proc proc/
+mount --rbind /sys sys/
+mount --rbind /dev dev/
+
+Puis :
+
+chroot /mnt /bin/bash
 arch-chroot /mnt
 COUNT=0
 zoneinfo=""
