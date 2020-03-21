@@ -186,14 +186,14 @@ if [ $system == "efi" ];then
     mkswap /dev/${NBDISK[3]}
     swapon /dev/${NBDISK[3]}
     mkfs.vfat -F32 /dev/${NBDISK[2]} #boot
-    mkfs.ext4 /dev/${NBDISK[4]}	    #"/"
-    mkfs.ext4 /dev/${NBDISK[5]}	    #home
+    yes | mkfs.ext4 /dev/${NBDISK[4]}	    #"/"
+    yes | mkfs.ext4 /dev/${NBDISK[5]}	    #home
 
   else 
 
     mkfs.vfat -F32 /dev/${NBDISK[2]} #boot
-    mkfs.ext4 /dev/${NBDISK[4]}	    #"/"
-    mkfs.ext4 /dev/${NBDISK[5]}	    #home
+    yes | mkfs.ext4 /dev/${NBDISK[3]}	    #"/"
+    yes | mkfs.ext4 /dev/${NBDISK[4]}	    #home
 
   fi
 fi
