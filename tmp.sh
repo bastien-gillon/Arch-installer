@@ -14,12 +14,12 @@ for i in $(lsblk -o NAME -l | grep $DISK )
     mount /dev/${NBDISK[2]} /mnt/boot
     echo "-------------------"
     mount /dev/${NBDISK[4]}	/mnt/home
-    arch-chroot /mnt
+    
  
   fi
 
-
-
+mount -t proc proc /mnt/proc
+arch-chroot /mnt
 COUNT=0
 zoneinfo=""
 for i in $(ls /usr/share/zoneinfo/)
