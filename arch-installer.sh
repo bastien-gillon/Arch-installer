@@ -183,17 +183,17 @@ if [ $system == "efi" ];then
 
   if [ $(lsblk -o NAME | grep $DISK | wc -l) -eq 5 ];then
     
-    mkswap /dev/$NBDISK[3]
-    swapon /dev/$NBDISK[3]
-    mkfs.vfat -F32 /dev/$NBDISK[2] #boot
-    mkfs.ext4 /dev/$NBDISK[4]	    #"/"
-    mkfs.ext4 /dev/$NBDISK[5]	    #home
+    mkswap /dev/${NBDISK[3]}
+    swapon /dev/${NBDISK[3]}
+    mkfs.vfat -F32 /dev/${NBDISK[2]} #boot
+    mkfs.ext4 /dev/${NBDISK[4]}	    #"/"
+    mkfs.ext4 /dev/${NBDISK[5]}	    #home
 
   else 
 
-    mkfs.vfat -F32 /dev/$NBDISK[2] #boot
-    mkfs.ext4 /dev/$NBDISK[4]	    #"/"
-    mkfs.ext4 /dev/$NBDISK[5]	    #home
+    mkfs.vfat -F32 /dev/${NBDISK[2]} #boot
+    mkfs.ext4 /dev/${NBDISK[4]}	    #"/"
+    mkfs.ext4 /dev/${NBDISK[5]}	    #home
 
   fi
 fi
