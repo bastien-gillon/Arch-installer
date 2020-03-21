@@ -174,7 +174,7 @@ if [ $system == "efi" ];then
     echo w ) | fdisk /dev/sda
 
 
-   COUNT=0
+  COUNT=0
   for i in $(lsblk -o NAME -l | grep $DISK)
   do
        COUNT=$[COUNT+1]
@@ -189,21 +189,63 @@ if [ $system == "efi" ];then
     yes | mkfs.ext4 /dev/${NBDISK[4]}	    #"/"
     yes | mkfs.ext4 /dev/${NBDISK[5]}	    #home
 
+    mount /dev/${NBDISK[4]} /mnt
+    mkdir /mnt/boot && mkdir /mnt/home
+    mount /dev/${NBDISK[2]} /mnt/boot
+    mount /dev/${NBDISK[5]}	/mnt/home
+
   else 
 
     mkfs.vfat -F32 /dev/${NBDISK[2]} #boot
     yes | mkfs.ext4 /dev/${NBDISK[3]}	    #"/"
     yes | mkfs.ext4 /dev/${NBDISK[4]}	    #home
 
+    mount /dev/${NBDISK[3]} /mnt
+    mkdir /mnt/boot && mkdir /mnt/home
+    mount /dev/${NBDISK[2]} /mnt/boot
+    mount /dev/${NBDISK[4]}	/mnt/home
+
   fi
-fi
 else
    ## TO DO BIOS PARTITION
     exit;
 fi
 
+##---------------INSTALL------------------#
+
+yes | pacstrap /mnt base base-devel linux linux-firmware dhcpcd dhclient vim
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+
+## TO DO ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+
+COUNT=0
+zoneinfo=""
+for  [ i in $(ls /usr/share/zoneinfo/) ]
+do
+  zoneinfo="$zoneinfo \ $i"
+  COUNT=$[COUNT+1]
+done
+
+ZONE=$(\
+dialog --title "Disk Choice"\
+ --menu "choose your zone : "  20 70 10 \
+ $zoneinfo 3>&1 1>&2 2>&3 3>&- )
 
 
+echo $ZONE
+echo $ZONE
+echo $ZONE
+echo $ZONE
+exit
+hwclock --systohc
+locale-gen
 
+#echo LANG="fr_FR.UTF-8" > /etc/locale.conf
+#export LANG=fr_FR.UTF-8
+#echo KEYMAP=fr > /etc/vconsole.conf
 
-
+mkinitcpio -p linux
+#passwd
+umount -R /mnt
+reboot
