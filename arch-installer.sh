@@ -174,14 +174,27 @@ if [ $system == "efi" ];then
     echo w ) | fdisk /dev/sda
 
 
-    #mkswap /dev/$disk2
-    #swapon /dev/$disk2
-    #mkfs.vfat -F32 /dev/$disk1 #boot
-    #mkfs.ext4 /dev/$disk3	    #"/"
-    #mkfs.ext4 /dev/$disk4	    #home
+   COUNT=0
+  for i in $(lsblk -o NAME)
+  do
+       COUNT=$[COUNT+1]
+       NBDISK[$COUNT]="$i"
+  done
+   
+  echo $NBDISK[2]
+  exit
+  if [ $(lsblk -o NAME | grep $DISK | wc -l) -eq 5 ];then
+    
+    mkswap /dev/$NBDISK[2]
+    swapon /dev/$NBDISK[2]
+    mkfs.vfat -F32 /dev/$NBDISK[1] #boot
+    mkfs.ext4 /dev/$NBDISK[3]	    #"/"
+    mkfs.ext4 /dev/$NBDISK[4]	    #home
 
-        
-    fi
+  else 
+
+
+  fi
 else
    ## TO DO BIOS PARTITION
     exit;
