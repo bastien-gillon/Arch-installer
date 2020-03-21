@@ -192,7 +192,7 @@ if [ $system == "efi" ];then
     mkfs.ext4 /dev/$NBDISK[4]	    #home
 
   else 
-
+    echo "yousk"
   fi
 fi
 else
