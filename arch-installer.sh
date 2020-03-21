@@ -201,16 +201,20 @@ if [ $system == "efi" ];then
     yes | mkfs.ext4 /dev/${NBDISK[4]}	    #home
 
     mount /dev/${NBDISK[3]} /mnt
-    mkdir /mnt/boot && mkdir /mnt/home
+    mkdir /mnt/boot
+    mkdir /mnt/home
     mount /dev/${NBDISK[2]} /mnt/boot
     mount /dev/${NBDISK[4]}	/mnt/home
 
+
+    echo "yousk_partiton"
   fi
 else
    ## TO DO BIOS PARTITION
     exit;
 fi
 
+echo "yousk"
 ##---------------INSTALL------------------#
 
 yes | pacstrap /mnt base base-devel linux linux-firmware dhcpcd dhclient vim
