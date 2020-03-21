@@ -1,3 +1,4 @@
+DISK="sda"
 COUNT=0
 for i in $(lsblk -o NAME -l | grep $DISK)
   do
