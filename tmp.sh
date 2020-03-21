@@ -7,7 +7,7 @@ for i in $(lsblk -o NAME -l | grep $DISK)
 
   if [ $(lsblk -o NAME | grep $DISK | wc -l) -eq 4 ];then
     
-    mmkfs.vfat -F32 /dev/${NBDISK[2]} #boot
+    mkfs.vfat -F32 /dev/${NBDISK[2]} #boot
     yes | mkfs.ext4 /dev/${NBDISK[3]}	    #"/"
     yes | mkfs.ext4 /dev/${NBDISK[4]}	    #home
 
@@ -25,7 +25,7 @@ COUNT=0
 zoneinfo=""
 for i in $(ls /usr/share/zoneinfo/)
 do
-  zoneinfo="$zoneinfo \ $i"
+  zoneinfo="$zoneinfo $i"
   COUNT=$[COUNT+1]
 done
 
@@ -36,3 +36,4 @@ dialog --title "Disk Choice"\
 
 
 echo "$ZONE"
+umount -R /mnt
