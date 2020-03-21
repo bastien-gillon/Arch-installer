@@ -1,6 +1,10 @@
 
 #(echo o; echo n; echo p; echo 1; echo ""; echo +512M; echo n; echo p; echo 2; echo ""; echo ""; echo w; echo q) | fdisk /dev/$(echo $Output_Device) 
 
+swapsize="+1G"
+rootsize="+2G"
+
+
 (#-----boot----#
 echo g
 echo n
@@ -34,7 +38,7 @@ echo 24 #linux x86_64 label
 echo n
 echo ""
 echo ""
-echo $homesize
+echo ""
 echo t
 echo ""
 echo 24 #linux x86_64 label
