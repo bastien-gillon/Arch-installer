@@ -175,7 +175,7 @@ if [ $system == "efi" ];then
 
 
    COUNT=0
-  for i in $(lsblk -o NAME)
+  for i in $(lsblk -o NAME -l | grep $DISK)
   do
        COUNT=$[COUNT+1]
        NBDISK[$COUNT]="$i"
