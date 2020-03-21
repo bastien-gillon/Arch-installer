@@ -1,6 +1,6 @@
-DISK = "sda"
+DISK="sda"
 COUNT=0
-for i in $(lsblk -o NAME -l | grep $DISK)
+for i in $(lsblk -o NAME -l | grep $DISK )
   do
        COUNT=$[COUNT+1]
        NBDISK[$COUNT]="$i"
@@ -12,7 +12,7 @@ for i in $(lsblk -o NAME -l | grep $DISK)
     yes | mkfs.ext4 /dev/${NBDISK[3]}	    #"/"
     yes | mkfs.ext4 /dev/${NBDISK[4]}	    #home
 
-    mount /dev/${NBDISK[3]} /mnt
+    mount /dev/${NBDISK[3]} /mnt/
     mkdir /mnt/boot
     mkdir /mnt/home
     mount /dev/${NBDISK[2]} /mnt/boot
