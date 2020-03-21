@@ -100,29 +100,18 @@ sizerootpartition=$(dialog --title "/ Size" \
    --backtitle "Size of the disk: $DISKSIZE , size of the swap: $swapsize" \
    --inputbox "Enter a size for the / partition ( Suggested size: 23-32G )" 8 80  3>&1 1>&2 2>&3 3>&- ) 
 
-#sizehomepartition=$(dialog --title "/home Size" \
-#   --backtitle "Size of the disk \: $DISKSIZE , size of the swap: $swapsize, size of the / partition $sizerootpartition" \
-#   --inputbox "Enter a size for the /home partition "  8 60 3>&1 1>&2 2>&3 3>&- ) 
-
-
-
-
 ## only numbers
-
-echo ${swapsize%?}
-echo ${sizerootpartition%?}
-#echo ${sizehomepartition%?}
+#${swapsize%?}
+#${sizerootpartition%?}
 
 ## only Letter
-
-echo ${swapsize: -1}
-echo ${sizerootpartition: -1}
-#echo ${sizehomepartition: -1} 
+#${swapsize: -1}
+#${sizerootpartition: -1}
 
 tmp=${swapsize%?}
 if [ ${swapsize: -1} == "M" ] || [ ${swapsize: -1} == "m" ];then 
 
-   # to do parted when swap in M
+   # to do check if we got G 
    bc -l <<< "scale=3; ${tmp}/1000"
    swapsize=$?
    tmp="G"
@@ -130,75 +119,71 @@ if [ ${swapsize: -1} == "M" ] || [ ${swapsize: -1} == "m" ];then
 
 fi
 
+tmp="+"
+swapsize=$tmp$swapsize
+sizerootpartition=$tmp$sizerootpartition
+
 echo "$swapsize"
 echo "$sizerootpartition"
-#echo "$sizehomepartition"
 
 if [ $system == "efi" ];then
 
-  parted /dev/$DISK mklabel gpt 
-  parted /dev/$DISK mkpart ESP fat32 0 1G
+  (#-----boot----#
+  echo g
+  echo n
+  echo ""
+  echo ""
+  echo +512M
+  echo t
+  echo 1 #efi label
 
-  if [ $swap -eq 0 ];then
+  #----swap-----#
 
-   tmp="G"
-   swapsize=${swapsize%?}
-   swapsize=$[swapsize+1]
-   swapsize=$swapsize$tmp
+    if [ $swap -eq 0 ];then 
 
-   sizerootpartition=${sizerootpartition%?}
-   sizerootpartition=$[sizerootpartition+1]
-   sizerootpartition=$sizerootpartition$tmp
+      echo n
+      echo ""
+      echo ""
+      echo $swapsize
+      echo t
+      echo ""
+      echo 19 #swap label
 
-   
-   parted /dev/$DISK mkpart primary linux-swap 1G $swapsize
-   parted /dev/$DISK mkpart primary ext4  $swapsize  $sizerootpartition
-   parted /dev/$DISK mkpart primary ext4  $sizerootpartition 100%
+    fi
 
-   tmp1="1"
-   tmp2="2"
-   tmp3="3"
-   tmp4="4"
-   disk1=$DISK$tmp1
-   disk2=$DISK$tmp2
-   disk3=$DISK$tmp3
-   disk4=$DISK$tmp4
-   
-   mkswap /dev/$disk2
-   swapon /dev/$disk2
-   mkfs.vfat -F32 /dev/$disk1 #boot
-   mkfs.ext4 /dev/$disk3	    #"/"
-   mkfs.ext4 /dev/$disk4	    #home
+    #----root----#
 
-  else 
+    echo n
+    echo ""
+    echo ""
+    echo $sizerootpartition
+    echo t
+    echo ""
+    echo 24 #linux x86_64 label 
 
-    tmp="G"
+    #----home----#
 
-    sizerootpartition=${sizerootpartition%?}
-    sizerootpartition=$[sizerootpartition+1]
-    sizerootpartition=$sizerootpartition$tmp
+    echo n
+    echo ""
+    echo ""
+    echo ""
+    echo t
+    echo ""
+    echo 24 #linux x86_64 label
 
-    parted /dev/$DISK mkpart primary ext4  1G  $sizerootpartition
-    parted /dev/$DISK mkpa web-seed capable client is recommended for fastest download speeds.
+    echo w ) | fdisk /dev/sda
 
-    Magnet link for 2020.03.01 rt primary ext4  $sizerootpartition 100%
 
-    tmp1="1"
-    tmp2="2"
-    tmp3="3"
+    #mkswap /dev/$disk2
+    #swapon /dev/$disk2
+    #mkfs.vfat -F32 /dev/$disk1 #boot
+    #mkfs.ext4 /dev/$disk3	    #"/"
+    #mkfs.ext4 /dev/$disk4	    #home
 
-    disk1=$DISK$tmp1
-    disk2=$DISK$tmp2
-    disk3=$DISK$tmp3
-    
-    mkfs.vfat -F32 /dev/$disk1 #boot
-    mkfs.ext4 /dev/$disk2	    #"/"
-    mkfs.ext4 /dev/$disk3	    #home
-    
-  fi
-    
-fi
+        
+    fi
 else
+   ## TO DO BIOS PARTITION
     exit;
 fi
 
