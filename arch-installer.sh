@@ -221,7 +221,7 @@ arch-chroot /mnt
 
 COUNT=0
 zoneinfo=""
-for  [ i in $(ls /usr/share/zoneinfo/) ]
+for i in $(ls /usr/share/zoneinfo/)
 do
   zoneinfo="$zoneinfo \ $i"
   COUNT=$[COUNT+1]
