@@ -125,7 +125,7 @@ sizerootpartition=$tmp$sizerootpartition
 
 echo "$swapsize"
 echo "$sizerootpartition"
-echo "yousk1"
+
 if [ $system == "efi" ];then
 
   (#-----boot----#
@@ -180,7 +180,7 @@ if [ $system == "efi" ];then
        COUNT=$[COUNT+1]
        NBDISK[$COUNT]="$i"
   done
-echo "yousk"
+
   if [ $(lsblk -o NAME | grep $DISK | wc -l) -eq 5 ];then
     
     mkswap /dev/${NBDISK[3]}
@@ -206,12 +206,13 @@ echo "yousk"
     mount /dev/${NBDISK[2]} /mnt/boot
     mount /dev/${NBDISK[4]}	/mnt/home
 
-
-    echo "yousk_partiton"
   fi
 else
    ## TO DO BIOS PARTITION
     exit;
+fi
+else
+  exit;
 fi
 
 
