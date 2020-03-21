@@ -95,7 +95,7 @@ case $swap in
    255) exit ;;
 esac
 
-
+echo "yousk3"
 sizerootpartition=$(dialog --title "/ Size" \
    --backtitle "Size of the disk: $DISKSIZE , size of the swap: $swapsize" \
    --inputbox "Enter a size for the / partition ( Suggested size: 23-32G )" 8 80  3>&1 1>&2 2>&3 3>&- ) 
@@ -125,7 +125,7 @@ sizerootpartition=$tmp$sizerootpartition
 
 echo "$swapsize"
 echo "$sizerootpartition"
-
+echo "yousk1"
 if [ $system == "efi" ];then
 
   (#-----boot----#
@@ -180,7 +180,7 @@ if [ $system == "efi" ];then
        COUNT=$[COUNT+1]
        NBDISK[$COUNT]="$i"
   done
-
+echo "yousk"
   if [ $(lsblk -o NAME | grep $DISK | wc -l) -eq 5 ];then
     
     mkswap /dev/${NBDISK[3]}
@@ -214,7 +214,7 @@ else
     exit;
 fi
 
-echo "yousk"
+
 ##---------------INSTALL------------------#
 
 yes | pacstrap /mnt base base-devel linux linux-firmware dhcpcd dhclient vim
