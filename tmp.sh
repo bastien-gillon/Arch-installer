@@ -8,11 +8,8 @@ for i in $(lsblk -o NAME -l | grep $DISK )
 
   if [ $(lsblk -o NAME | grep $DISK | wc -l) -eq 4 ];then
     
-    mkfs.vfat -F32 /dev/${NBDISK[2]} #boot
-    yes | mkfs.ext4 /dev/${NBDISK[3]}	    #"/"
-    yes | mkfs.ext4 /dev/${NBDISK[4]}	    #home
-
     mount /dev/${NBDISK[3]} /mnt/
+    echo "-------------------"
     mkdir /mnt/boot
     mkdir /mnt/home
     mount /dev/${NBDISK[2]} /mnt/boot
