@@ -181,7 +181,7 @@ if [ $system == "efi" ];then
        NBDISK[$COUNT]="$i"
   done
    
-  echo $NBDISK[2]
+  echo ${NBDISK[2]}
   exit
   if [ $(lsblk -o NAME | grep $DISK | wc -l) -eq 5 ];then
     
