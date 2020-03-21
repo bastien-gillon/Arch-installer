@@ -193,8 +193,8 @@ if [ $system == "efi" ];then
 
   else 
 
-
   fi
+fi
 else
    ## TO DO BIOS PARTITION
     exit;
