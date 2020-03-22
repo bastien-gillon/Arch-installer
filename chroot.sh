@@ -7,6 +7,7 @@
 #done
 
 ZONE=$(dialog --title "List file of directory" --fselect /usr/share/zoneinfo/ 100 100 3>&1 1>&2 2>&3 3>&- )
+zone1=$?
 #ZONE=$(\
 #dialog --title "Disk Choice"\
 # --menu "choose your zone : "  20 70 10 \
@@ -14,4 +15,5 @@ ZONE=$(dialog --title "List file of directory" --fselect /usr/share/zoneinfo/ 10
 
 
 echo "$ZONE"
+echo "$zone1"
 exit
