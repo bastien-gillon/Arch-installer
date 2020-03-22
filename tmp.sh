@@ -19,16 +19,7 @@ for i in $(lsblk -o NAME -l | grep $DISK )
   fi
 
 
-cd /mnt
-mount -t proc proc proc/
-mount --rbind /sys sys/
-mount --rbind /dev dev/
-
-Puis :
-
-chroot /mnt /bin/bash
-arch-chroot /mnt
-COUNT=0
+(COUNT=0
 zoneinfo=""
 for i in $(ls /usr/share/zoneinfo/)
 do
@@ -43,4 +34,6 @@ dialog --title "Disk Choice"\
 
 
 echo "$ZONE"
+exit 
+) | arch-chroot /mnt
 umount -R /mnt
