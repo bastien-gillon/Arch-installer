@@ -218,7 +218,7 @@ fi
 
 ##---------------INSTALL------------------#
 
-yes | pacstrap /mnt base base-devel linux linux-firmware dhcpcd dhclient vim dialog
+yes | pacstrap /mnt base base-devel linux linux-firmware dhcpcd dhclient vim dialog git
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 

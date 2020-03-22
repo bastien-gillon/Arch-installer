@@ -18,8 +18,10 @@ for i in $(lsblk -o NAME -l | grep $DISK )
  
   fi
 
-( git clone https://github.com/bastien-gillon/arch-installer 
-cd arch-installer
-bash chroot.sh ) | arch-chroot /mnt 
+( 
+echo "git clone https://github.com/bastien-gillon/arch-installer" ;
+echo "cd arch-installer"
+echo "bash chroot.sh"
+) | arch-chroot /mnt 
 
 umount -R /mnt
