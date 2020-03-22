@@ -19,7 +19,8 @@ for i in $(lsblk -o NAME -l | grep $DISK )
   fi
 
 
-(COUNT=0
+(
+COUNT=0
 zoneinfo=""
 for i in $(ls /usr/share/zoneinfo/)
 do
@@ -34,6 +35,6 @@ dialog --title "Disk Choice"\
 
 
 echo "$ZONE"
-exit 
+echo "exit" 
 ) | arch-chroot /mnt
 umount -R /mnt

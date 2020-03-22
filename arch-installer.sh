@@ -218,17 +218,18 @@ fi
 
 ##---------------INSTALL------------------#
 
-yes | pacstrap /mnt base base-devel linux linux-firmware dhcpcd dhclient vim
+yes | pacstrap /mnt base base-devel linux linux-firmware dhcpcd dhclient vim dialog
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 
 ## TO DO ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
 
+(
 COUNT=0
 zoneinfo=""
 for i in $(ls /usr/share/zoneinfo/)
 do
-  zoneinfo="$zoneinfo \ $i"
+  zoneinfo="$zoneinfo $i"
   COUNT=$[COUNT+1]
 done
 
@@ -239,8 +240,9 @@ dialog --title "Disk Choice"\
 
 
 echo "$ZONE"
-
-exit;
+exit
+) | arch-chroot /mnt
+umount -R /mnt
 #hwclock --systohc
 #locale-gen
 #echo LANG="fr_FR.UTF-8" > /etc/locale.conf
