@@ -18,24 +18,8 @@ for i in $(lsblk -o NAME -l | grep $DISK )
  
   fi
 
-(echo "echo "___________" ; exit " ) | arch-chroot /mnt 
-exit 
-(
-COUNT=0
-zoneinfo=""
-for i in $(ls /usr/share/zoneinfo/)
-do
-  zoneinfo="$zoneinfo $i"
-  COUNT=$[COUNT+1]
-done
+( git clone https://github.com/bastien-gillon/arch-installer 
+cd arch-installer
+bash chroot.sh ) | arch-chroot /mnt 
 
-ZONE=$(\
-dialog --title "Disk Choice"\
- --menu "choose your zone : "  20 70 10 \
- $zoneinfo 3>&1 1>&2 2>&3 3>&- )
-
-
-echo "$ZONE"
-echo "exit" 
-) | arch-chroot /mnt
 umount -R /mnt
