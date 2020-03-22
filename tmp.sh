@@ -18,7 +18,8 @@ for i in $(lsblk -o NAME -l | grep $DISK )
  
   fi
 
-
+(echo "echo "___________" ; exit " ) | arch-chroot /mnt 
+exit 
 (
 COUNT=0
 zoneinfo=""
