@@ -219,28 +219,13 @@ fi
 
 yes | pacstrap /mnt base base-devel linux linux-firmware dhcpcd dhclient vim dialog git
 genfstab -U /mnt >> /mnt/etc/fstab
-arch-chroot /mnt
 
-## TO DO ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+( 
+echo "git clone https://github.com/bastien-gillon/arch-installer" ;
+echo "cd arch-installer"
+echo "bash chroot.sh"
+) | arch-chroot /mnt 
 
-(
-COUNT=0
-zoneinfo=""
-for i in $(ls /usr/share/zoneinfo/)
-do
-  zoneinfo="$zoneinfo $i"
-  COUNT=$[COUNT+1]
-done
-
-ZONE=$(\
-dialog --title "Disk Choice"\
- --menu "choose your zone : "  20 70 10 \
- $zoneinfo 3>&1 1>&2 2>&3 3>&- )
-
-
-echo "$ZONE"
-exit
-) | arch-chroot /mnt
 umount -R /mnt
 #hwclock --systohc
 #locale-gen
