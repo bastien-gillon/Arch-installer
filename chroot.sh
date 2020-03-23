@@ -19,7 +19,7 @@ dialog --title "Disk Choice"\
 
 
 ##-----------CHOICE OF REGION-----------#
-cd /usr/share/zoneinfo/TABZONE[$ZONE]
+cd /usr/share/zoneinfo/${TABZONE[$ZONE]}
 region=""
 echo $tmp
 for i in $(ls)
@@ -36,4 +36,5 @@ dialog --title "Disk Choice"\
 
 echo ${TABZONE[$ZONE]}
 echo ${TABREGION[$REGION]}
+
 exit
