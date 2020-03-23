@@ -6,7 +6,9 @@ do
 COUNT=$[COUNT+1]
   zoneinfo="$zoneinfo $COUNT $i"
 done
-
+ echo "----------------"
+ echo $zoneinfo
+ echo "----------------"
 
 ZONE=$(\
 dialog --title "Disk Choice"\
