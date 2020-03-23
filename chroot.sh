@@ -34,7 +34,7 @@ dialog --title "Disk Choice"\
  $region 3>&1 1>&2 2>&3 3>&- )
 
 
-echo $($TABZONE[$ZONE])
-echo $($TABREGION[$REGION])
+echo $TABZONE[$ZONE]
+echo $TABREGION[$REGION]
 
 exit
