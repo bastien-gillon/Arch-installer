@@ -2,6 +2,7 @@ COUNT=0
 zoneinfo=""
 cd /usr/share/zoneinfo
 tmp = ls -d -- */
+echo $tmp
 for i in $tmp
 do
 COUNT=$[COUNT+1]
