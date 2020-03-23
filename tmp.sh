@@ -18,7 +18,8 @@ for i in $(lsblk -o NAME -l | grep $DISK )
  
   fi
 
-( 
+(
+echo "rm -r arch-installer"
 echo "git clone https://github.com/bastien-gillon/arch-installer" ;
 echo "cd arch-installer"
 echo "bash chroot.sh"
