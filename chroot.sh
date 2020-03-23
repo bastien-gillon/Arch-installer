@@ -7,10 +7,8 @@ for i in $tmp
 do
 COUNT=$[COUNT+1]
   zoneinfo="$zoneinfo $COUNT $i"
+  TABZONE[$COUNT]=$i
 done
- echo "----------------"
- echo $zoneinfo
- echo "----------------"
 
 ZONE=$(\
 dialog --title "Disk Choice"\
@@ -18,6 +16,18 @@ dialog --title "Disk Choice"\
  $zoneinfo 3>&1 1>&2 2>&3 3>&- )
 
 
-echo "$ZONE"
+
+cd /usr/share/zoneinfo/TABZONE[$ZONE]
+region=""
+echo $tmp
+for i in $(ls)
+do
+COUNT=$[COUNT+1]
+  region="$region $COUNT $i"
+  TABZONE[$COUNT]=$i
+done
+
+echo TABZONE[$ZONE]
+echo TABZONE[$region]
 
 exit
