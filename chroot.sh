@@ -1,7 +1,7 @@
 COUNT=0
 zoneinfo=""
 cd usr/share/zoneinfo
-for i in $('ls -d -- */ ')
+for i in $('ls -d -- \*/ ')
 do
 COUNT=$[COUNT+1]
   zoneinfo="$zoneinfo $COUNT $i"
