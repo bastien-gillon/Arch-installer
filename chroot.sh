@@ -47,7 +47,7 @@ dialog --title "language Choice"\
  --menu "choose your language system : "  20 70 10 \
  1 FR 2 EN 3>&1 1>&2 2>&3 3>&- )
 
-if [ LANG -eq 1 ];then
+if [ $LANG -eq 1 ];then
   echo LANG="fr_FR.UTF-8" > /etc/locale.conf
   export LANG=fr_FR.UTF-8
 else
@@ -59,7 +59,7 @@ dialog --title "layout Choice"\
  --menu "choose your keyboard layout: "  20 70 10 \
  1 FR 2 EN 3>&1 1>&2 2>&3 3>&- )
 
- if [ LANG -eq 1 ];then
+ if [ $LANG -eq 1 ];then
   echo KEYMAP=fr > /etc/vconsole.conf
 else
   echo KEYMAP=us > /etc/vconsole.conf
@@ -74,7 +74,7 @@ dialog --title "Microcode Choice"\
  --menu "choose your CPU manufacturer: "  20 70 10 \
  1 AMD 2 Intel 3>&1 1>&2 2>&3 3>&- )
 
-if [ CPU -eq 1 ];then
+if [ $CPU -eq 1 ];then
   yes | pacman -S amd-ucode
 else
   yes | pacman -S intel-ucode
@@ -85,7 +85,7 @@ mkinitcpio -p linux
 passwd=""
 passwdcheck="-1"
 
-while [ passwd != passwdcheck ]
+while [ $passwd != $passwdcheck ]
 do
 dialog --title "Password" \
 --clear \
