@@ -189,8 +189,8 @@ if [ $system == "efi" ];then
     yes | mkfs.ext4 /dev/${NBDISK[5]}	    #home
 
     mount /dev/${NBDISK[4]} /mnt
-    mkdir /mnt/boot && mkdir /mnt/home
-    mount /dev/${NBDISK[2]} /mnt/boot
+    mkdir /mnt/boot && mkdir /mnt/home && mkdir /boot/efi
+    mount /dev/${NBDISK[2]} /mnt/boot/efi
     mount /dev/${NBDISK[5]}	/mnt/home
 
   else 
@@ -227,13 +227,5 @@ echo "bash chroot.sh"
 ) | arch-chroot /mnt 
 
 umount -R /mnt
-#hwclock --systohc
-#locale-gen
-#echo LANG="fr_FR.UTF-8" > /etc/locale.conf
-#export LANG=fr_FR.UTF-8
-#echo KEYMAP=fr > /etc/vconsole.conf
-#mkinitcpio -p linux
-#passwd
-#umount -R /mnt
-#reboot
+
 
