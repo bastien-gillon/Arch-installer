@@ -224,10 +224,12 @@ genfstab -U /mnt >> /mnt/etc/fstab
 echo "git clone https://github.com/bastien-gillon/arch-installer" ;
 echo "cd arch-installer"
 echo "bash chroot.sh"
+echo "exit"
 ) | arch-chroot /mnt 
 
 umount -R /mnt
-dialog --title "Reboot" --msgbox  'your installation is finished. Your pc will restart ... ' 6 20
+
+dialog --title "Reboot"  --msgbox 'your installation is finished. Your pc will reboot ... ' 10 30
 
 reboot
 

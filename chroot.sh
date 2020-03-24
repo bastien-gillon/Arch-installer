@@ -64,11 +64,10 @@ else
   echo "KEYMAP=us" > /etc/vconsole.conf
 fi
 
-################################ DON'T  WORK ####################################################
-MachineName=$(dialog --title "Machine Name" --inputbox "Enter your machine name:" 8 40)
+
+MachineName=$(dialog --title "Machine Name" --inputbox "Enter your machine name:" --stdout 8 40)
 echo $MachineName > /etc/hostname
 echo "127.0.1.1 $MachineName.localdomain $MachineName" >> /etc/hosts
-##################################################################################################
 
 CPU=$(\
 dialog --title "Microcode Choice"\
@@ -86,26 +85,29 @@ mkinitcpio -p linux
 passwd=""
 passwdcheck="-1"
 
-################################ DON'T  WORK ####################################################
 while [ "$passwd" != "$passwdcheck" ]
-do
-dialog --title "Password" \
---clear \
---insecure \
---passwordbox "Enter your password" 10 30 2> $passwd
-##################################################################################################
-dialog --title "Password" \
---clear \
---insecure \
---passwordbox "Re-Enter your password" 10 30 2> $passwdcheck
-done
+    do
+    if [ $passwdcheck != "-1" ];then
+      dialog --title "PASSWORD" --msgbox  ' Passwords are not the same. Please re enter your password ' 10 30
+    fi
+    echo "in while"
+    passwd=$(dialog --title "Password" \
+    --clear \
+    --insecure \
+    --passwordbox "Enter your password" 10 30 \
+    --stdout )
+   
+    passwdcheck=$(dialog --title "Password" \
+    --clear \
+    --insecure \
+    --passwordbox "Re Enter your password" 10 30 \
+    --stdout )
+    done
 
-echo $passws | passwd --stdin
+echo $passwd | passwd --stdin
 
 
 
-yes| pacman -S grub efibootmgr
+yes | pacman -S grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot
 grub-mkconfig -o /boot/grub/grub.cfg
-
-exit 
