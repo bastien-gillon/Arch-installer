@@ -32,8 +32,7 @@ umount -R /mnt
 echo " before "
 
 sleep 3
-dialog --title "test" --msgbox "tetetete" 7 30a
-dialog --title "Reboot"  --msgbox 'Your installation is finished. Your pc will reboot ...' 7 30
+dialog --title "Reboot"  --msgbox 'Your installation is finished. Your pc will reboot ...' 7 30 3>&1 1>&2 2>&3 3>&-
 
 echo "================="
 echo "| DOBBY IS FREE |"
