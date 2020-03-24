@@ -24,10 +24,7 @@ for i in $(lsblk -o NAME -l | grep $DISK )
 
 
 (
-echo "echo "===================" " 
-echo "echo "| DOBBY IN CHROOT |" "
-echo "echo "===================" "
-sleep 3
+echo "sleep 3"
 ) | arch-chroot /mnt 
 
 umount -R /mnt
@@ -35,7 +32,7 @@ umount -R /mnt
 echo "======================================="
 echo "| MASTER HAS GIVEN TO DOOBY A SOCK ?? |"
 echo "======================================="
-
+sleep 3
 dialog --title "Reboot"  --msgbox "your installation is finished. Your pc will reboot ..." 10 30
 
 echo "================="
