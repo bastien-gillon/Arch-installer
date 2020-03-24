@@ -227,5 +227,8 @@ echo "bash chroot.sh"
 ) | arch-chroot /mnt 
 
 umount -R /mnt
+dialog --title "Reboot" --msgbox  'your installation is finished. Your pc will restart ... ' 6 20
+
+reboot
 
 

@@ -16,6 +16,20 @@ for i in $(lsblk -o NAME -l | grep $DISK )
     
   fi
 
+  MachineName=$(dialog --title "Machine Name" --inputbox "Enter your machine name:" 8 40)
+  passwd=""
+  passwdcheck="-1"
+
+  ################################ DON'T  WORK ####################################################
+  while [ "$passwd" != "$passwdcheck" ]
+  do
+  dialog --title "Password" \
+  --clear \
+  --insecure \
+  --passwordbox "Enter your password" 10 30 2> $passwd
+  ##############################################################
+  exit
+  
 (
 echo "rm -r arch-installer"
 echo "git clone https://github.com/bastien-gillon/arch-installer" ;

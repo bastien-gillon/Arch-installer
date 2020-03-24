@@ -64,9 +64,11 @@ else
   echo "KEYMAP=us" > /etc/vconsole.conf
 fi
 
+################################ DON'T  WORK ####################################################
 MachineName=$(dialog --title "Machine Name" --inputbox "Enter your machine name:" 8 40)
 echo $MachineName > /etc/hostname
 echo "127.0.1.1 $MachineName.localdomain $MachineName" >> /etc/hosts
+##################################################################################################
 
 CPU=$(\
 dialog --title "Microcode Choice"\
@@ -84,13 +86,14 @@ mkinitcpio -p linux
 passwd=""
 passwdcheck="-1"
 
+################################ DON'T  WORK ####################################################
 while [ "$passwd" != "$passwdcheck" ]
 do
 dialog --title "Password" \
 --clear \
 --insecure \
 --passwordbox "Enter your password" 10 30 2> $passwd
-
+##################################################################################################
 dialog --title "Password" \
 --clear \
 --insecure \
