@@ -30,8 +30,8 @@ echo "sleep 3"
 umount -R /mnt
 
 echo " before "
-whiptail --title "I am the title" --msgbox "Hi there" 8 45
-dialog --title "Reboot"  --msgbox 'Your installation is finished. Your pc will reboot ...' 7 30 3>&1 1>&2 2>&3 3>&-
+whiptail --title "Reboot" --msgbox 'Your installation is finished. Your pc will reboot ...' 8 45
+dialog --title "Reboot"  --msgbox 'Your installation is finished. Your pc will reboot ...' 8 45 
 
 echo "================="
 echo "| DOBBY IS FREE |"
