@@ -16,13 +16,18 @@ for i in $(lsblk -o NAME -l | grep $DISK )
     
   fi
 
-  MachineName=$(dialog --title "Machine Name" --inputbox "Enter your machine name:" --clear --stdout 8 40)
+  MachineName=$(dialog --title "Machine Name" --inputbox "Enter your machine name:" --stdout 8 40)
+  echo $MachineName
+  sleep 3
   passwd=""
   passwdcheck="-1"
 
   ################################ DON'T  WORK ####################################################
   while [ "$passwd" != "$passwdcheck" ]
     do
+    if [ passwdcheck = "-1" ];then
+      dialog --title "PASSWORD" --msgbox  ' Passwords are not the same,please re enter your password ' 6 20
+    fi
     echo "in while"
     passwd=$(dialog --title "Password" \
     --clear \
@@ -33,10 +38,13 @@ for i in $(lsblk -o NAME -l | grep $DISK )
     passwdcheck=$(dialog --title "Password" \
     --clear \
     --insecure \
-    --passwordbox "Re-Enter your password" 10 30 \
+    --passwordbox "Re Enter your password" 10 30 \
     --stdout )
     done
    #################################################################################################
+
+  dialog --title "Reboot"  --–ok–label "Reboot" --msgbox 'your installation is finished. Your pc will restart ... ' 6 20
+
   exit
 
 (
@@ -47,6 +55,4 @@ echo "bash chroot.sh"
 ) | arch-chroot /mnt 
 
 umount -R /mnt
-dialog --title "Reboot" --msgbox  'your installation is finished. Your pc will restart ... ' 6 20
 
-reboot
