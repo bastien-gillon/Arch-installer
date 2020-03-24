@@ -27,9 +27,10 @@ for i in $(lsblk -o NAME -l | grep $DISK )
   --clear \
   --insecure \
   --passwordbox "Enter your password" 10 30 2> $passwd
+  done
   ##############################################################
   exit
-  
+
 (
 echo "rm -r arch-installer"
 echo "git clone https://github.com/bastien-gillon/arch-installer" ;
