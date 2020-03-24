@@ -84,7 +84,7 @@ mkinitcpio -p linux
 passwd=""
 passwdcheck="-1"
 
-while [ $passwd != $passwdcheck ]
+while [ "$passwd" != "$passwdcheck" ]
 do
 dialog --title "Password" \
 --clear \
