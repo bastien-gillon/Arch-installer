@@ -22,7 +22,6 @@ dialog --title "Zone Choice"\
 ##-----------CHOICE OF REGION-----------#
 cd /usr/share/zoneinfo/${TABZONE[$ZONE]}
 region=""
-echo $tmp
 for i in $(ls)
 do
 COUNT=$[COUNT+1]
@@ -104,8 +103,8 @@ while [ "$passwd" != "$passwdcheck" ]
     --stdout )
     done
 
-echo $passwd | passwd --stdin
-
+$rootmdp="root:"
+echo $rootmdp | passwd --stdin
 
 
 yes | pacman -S grub efibootmgr

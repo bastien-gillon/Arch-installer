@@ -221,7 +221,7 @@ yes | pacstrap /mnt base base-devel linux linux-firmware dhcpcd dhclient vim dia
 genfstab -U /mnt >> /mnt/etc/fstab
 
 ( 
-echo "git clone https://github.com/bastien-gillon/arch-installer" ;
+echo "git clone https://github.com/bastien-gillon/arch-installer" 
 echo "cd arch-installer"
 echo "bash chroot.sh"
 echo "exit"
