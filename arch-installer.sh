@@ -56,7 +56,7 @@ do
 done
 
 DISKID=$(\
-dialog --title "Disk Choice"\
+whiptail --title "Disk Choice"\
  --menu "choose on which disk you want to install archlinux : "  20 70 10 \
  $option 3>&1 1>&2 2>&3 3>&- )
 
@@ -64,12 +64,12 @@ DISK=${MENU_OPTIONS[$DISKID+1]}
 
 #echo "you choose the disk ${DISK}"
 
-if dialog --stdout --title "Disk Choice" \
+if whiptail --stdout --title "Disk Choice" \
           --yesno "Are you sure you want to choose \" ${DISK} \"? Everything will be erased on this disc" 10 60; 
 then
  #!--------------------------------------Partition----------------------------------------!#
 
-# ( dd if=/dev/zero | pv -n /dev/${DISK} | dd of=/dev/${DISK} bs=4096 ) 2>&1 | dialog --gauge "Running dd command (erasing ${DISK}), please wait..." 10 70 0
+# ( dd if=/dev/zero | pv -n /dev/${DISK} | dd of=/dev/${DISK} bs=4096 ) 2>&1 | whiptail --gauge "Running dd command (erasing ${DISK}), please wait..." 10 70 0
 
 
 
@@ -82,12 +82,12 @@ done
 
 DISKSIZE=${TABSIZE[$DISKID+1]} 
 
-dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 10 60 3>&1 1>&2 2>&3 3>&-
+whiptail --title "SWAP"  --yesno "Do you want a SWAP partition ?" 10 60 3>&1 1>&2 2>&3 3>&-
 swap=$?
 
 
 case $swap in
-   0)  swapsize=$(dialog --title "Swap Size" \
+   0)  swapsize=$(whiptail --title "Swap Size" \
       --backtitle "Size of the disk: $DISKSIZE" \
       --inputbox "Enter a size for the swap partition (ex: 512M or 1G)" 8 60 3>&1 1>&2 2>&3 3>&- )
        ;;
@@ -95,7 +95,7 @@ case $swap in
    255) exit ;;
 esac
 
-sizerootpartition=$(dialog --title "/ Size" \
+sizerootpartition=$(whiptail --title "/ Size" \
    --backtitle "Size of the disk: $DISKSIZE , size of the swap: $swapsize" \
    --inputbox "Enter a size for the / partition ( Suggested size: 23-32G )" 8 80  3>&1 1>&2 2>&3 3>&- ) 
 
@@ -217,7 +217,7 @@ fi
 
 ##---------------INSTALL------------------#
 
-yes | pacstrap /mnt base base-devel linux linux-firmware dhcpcd dhclient vim dialog git
+yes | pacstrap /mnt base base-devel linux linux-firmware dhcpcd dhclient vim whiptail git
 genfstab -U /mnt >> /mnt/etc/fstab
 
 ( 

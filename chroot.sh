@@ -14,7 +14,7 @@ COUNT=$[COUNT+1]
 done
 
 ZONE=$(\
-dialog --title "Zone Choice"\
+whiptail --title "Zone Choice"\
  --menu "choose your zone : "  20 70 10 \
  $zoneinfo 3>&1 1>&2 2>&3 3>&- )
 
@@ -29,7 +29,7 @@ COUNT=$[COUNT+1]
   TABREGION[$COUNT]=$i
 done
 REGION=$(\
-dialog --title "Zone Choice"\
+whiptail --title "Zone Choice"\
  --menu "choose your region : "  20 70 10 \
  $region 3>&1 1>&2 2>&3 3>&- )
 
@@ -42,7 +42,7 @@ hwclock --systohc
 locale-gen
 
 LANG=$(\
-dialog --title "language Choice"\
+whiptail --title "language Choice"\
  --menu "choose your language system : "  20 70 10 \
  1 FR 2 EN 3>&1 1>&2 2>&3 3>&- )
 
@@ -53,7 +53,7 @@ else
 fi
 
 KEYBOARD=$(\
-dialog --title "layout Choice"\
+whiptail --title "layout Choice"\
  --menu "choose your keyboard layout: "  20 70 10 \
  1 FR 2 EN 3>&1 1>&2 2>&3 3>&- )
 
@@ -64,12 +64,12 @@ else
 fi
 
 
-MachineName=$(dialog --title "Machine Name" --inputbox "Enter your machine name:" --stdout 8 40)
+MachineName=$(whiptail --title "Machine Name" --inputbox "Enter your machine name:" --stdout 8 40)
 echo $MachineName > /etc/hostname
 echo "127.0.1.1 $MachineName.localdomain $MachineName" >> /etc/hosts
 
 CPU=$(\
-dialog --title "Microcode Choice"\
+whiptail --title "Microcode Choice"\
  --menu "choose your CPU manufacturer: "  20 70 10 \
  1 AMD 2 Intel 3>&1 1>&2 2>&3 3>&- )
 
@@ -87,16 +87,16 @@ passwdcheck="-1"
 while [ "$passwd" != "$passwdcheck" ]
     do
     if [ $passwdcheck != "-1" ];then
-      dialog --title "PASSWORD" --msgbox  ' Passwords are not the same. Please re enter your password ' 10 30
+      whiptail --title "PASSWORD" --msgbox  ' Passwords are not the same. Please re enter your password ' 10 30
     fi
     echo "in while"
-    passwd=$(dialog --title "Password" \
+    passwd=$(whiptail --title "Password" \
     --clear \
     --insecure \
     --passwordbox "Enter your password" 10 30 \
     --stdout )
    
-    passwdcheck=$(dialog --title "Password" \
+    passwdcheck=$(whiptail --title "Password" \
     --clear \
     --insecure \
     --passwordbox "Re Enter your password" 10 30 \
