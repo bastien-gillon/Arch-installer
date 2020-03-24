@@ -69,9 +69,6 @@ if whiptail --title "Disk Choice" \
 then
  #!--------------------------------------Partition----------------------------------------!#
 
-# ( dd if=/dev/zero | pv -n /dev/${DISK} | dd of=/dev/${DISK} bs=4096 ) 2>&1 | whiptail --gauge "Running dd command (erasing ${DISK}), please wait..." 10 70 0
-
-
 
 COUNT=0
  for i in $(lsblk -o SIZE)
@@ -224,13 +221,15 @@ genfstab -U /mnt >> /mnt/etc/fstab
 echo "git clone https://github.com/bastien-gillon/arch-installer" 
 echo "cd arch-installer"
 echo "bash chroot.sh"
-echo "exit"
+echo "rm -r arch-installer"
 ) | arch-chroot /mnt 
 
 umount -R /mnt
 
 whiptail --title "Reboot" --msgbox 'Your installation is finished. Your pc will reboot ...' 8 45
 
+
+exit 
 reboot
 
 
