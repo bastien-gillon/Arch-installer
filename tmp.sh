@@ -31,7 +31,7 @@ umount -R /mnt
 
 echo " before "
 
-dialog --title "SWAP"  --yesno "Do you want a SWAP partition ?" 10 60 3>&1 1>&2 2>&3 3>&-
+dialog 
 dialog --title "Reboot"  --msgbox 'Your installation is finished. Your pc will reboot ...' 7 30 3>&1 1>&2 2>&3 3>&-
 
 echo "================="
