@@ -17,10 +17,6 @@ for i in $(lsblk -o NAME -l | grep $DISK )
   fi
 
 
-
-
-  exit
-
 (
 echo "rm -r arch-installer"
 echo "git clone https://github.com/bastien-gillon/arch-installer" ;
@@ -29,4 +25,5 @@ echo "bash chroot.sh"
 ) | arch-chroot /mnt 
 
 umount -R /mnt
+echo "DOBBY EST LIBRE"
 
