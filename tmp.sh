@@ -23,16 +23,19 @@ for i in $(lsblk -o NAME -l | grep $DISK )
   ################################ DON'T  WORK ####################################################
   while [ "$passwd" != "$passwdcheck" ]
     do
+    echo "in while"
     passwd=$(dialog --title "Password" \
     --clear \
     --insecure \
-    --passwordbox "Enter your password" 10 30 )
+    --passwordbox "Enter your password" 10 30 \
+    --stdout )
    
     passwdcheck=$(dialog --title "Password" \
     --clear \
     --insecure \
-    --passwordbox "Re-Enter your password" 10 30)
-  done
+    --passwordbox "Re-Enter your password" 10 30 \
+    --stdout )
+    done
    #################################################################################################
   exit
 
