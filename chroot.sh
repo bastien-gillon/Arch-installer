@@ -48,10 +48,9 @@ dialog --title "language Choice"\
  1 FR 2 EN 3>&1 1>&2 2>&3 3>&- )
 
 if [ $LANG -eq 1 ];then
-  echo "LANG=fr_FR.UTF-8 > /etc/locale.conf"
-  export LANG=fr_FR.UTF-8
+  echo "LANG=fr_FR.UTF-8" > /etc/locale.conf
 else
-  echo "LANG=en_US.UTF-8 > /etc/locale.conf"
+  echo "LANG=en_US.UTF-8" > /etc/locale.conf
 fi
 
 KEYBOARD=$(\
@@ -60,9 +59,9 @@ dialog --title "layout Choice"\
  1 FR 2 EN 3>&1 1>&2 2>&3 3>&- )
 
  if [ $LANG -eq 1 ];then
-  echo "KEYMAP=fr > /etc/vconsole.conf"
+  echo "KEYMAP=fr" > /etc/vconsole.conf
 else
-  echo "KEYMAP=us > /etc/vconsole.conf"
+  echo "KEYMAP=us" > /etc/vconsole.conf
 fi
 
 MachineName=$(dialog --title "Machine Name" --inputbox "Enter your machine name:" 8 40)
@@ -103,7 +102,7 @@ echo $passws | passwd --stdin
 
 
 yes| pacman -S grub efibootmgr
-grub-install --target=x86_64-efi --efi-directory=/boot/efi
+grub-install --target=x86_64-efi --efi-directory=/boot
 grub-mkconfig -o /boot/grub/grub.cfg
 
 exit 
