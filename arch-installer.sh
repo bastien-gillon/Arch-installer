@@ -228,8 +228,6 @@ umount -R /mnt
 
 whiptail --title "Reboot" --msgbox 'Your installation is finished. Your pc will reboot ...' 8 45
 
-
-exit 
 reboot
 
 
