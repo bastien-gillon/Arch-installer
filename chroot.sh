@@ -104,9 +104,12 @@ while [ "$passwd" != "$passwdcheck" ]
     done
 
 $rootmdp="root:"
+########################### BUG ###############################
+##                         root::                            ##
 echo $rootmdp$passwd | chpasswd
 
 
 yes | pacman -S grub efibootmgr
+########################### BUG ###############################
 grub-install --target=x86_64-efi --efi-directory=/boot
 grub-mkconfig -o /boot/grub/grub.cfg
