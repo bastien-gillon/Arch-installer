@@ -18,15 +18,15 @@ for i in $(lsblk -o NAME -l | grep $DISK )
 
   MachineName=$(dialog --title "Machine Name" --inputbox "Enter your machine name:" --stdout 8 40)
   echo $MachineName
-  sleep 3
+
   passwd=""
   passwdcheck="-1"
 
   ################################ DON'T  WORK ####################################################
   while [ "$passwd" != "$passwdcheck" ]
     do
-    if [ $passwdcheck = "-1" ];then
-      dialog --title "PASSWORD" --msgbox  ' Passwords are not the same,please re enter your password ' 6 20
+    if [ $passwdcheck != "-1" ];then
+      dialog --title "PASSWORD" --msgbox  ' Passwords are not the same,please re enter your password ' 10 30
     fi
     echo "in while"
     passwd=$(dialog --title "Password" \
@@ -43,6 +43,8 @@ for i in $(lsblk -o NAME -l | grep $DISK )
     done
    #################################################################################################
 
+  echo $passwd
+  echo $passwdcheck
   dialog --title "Reboot"  --msgbox 'your installation is finished. Your pc will restart ... ' 6 20
 
   exit
