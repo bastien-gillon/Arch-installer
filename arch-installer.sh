@@ -229,7 +229,7 @@ echo "exit"
 
 umount -R /mnt
 
-dialog --title "Reboot"  --msgbox 'your installation is finished. Your pc will reboot ... ' 10 30
+whiptail --title "Reboot" --msgbox 'Your installation is finished. Your pc will reboot ...' 8 45
 
 reboot
 
