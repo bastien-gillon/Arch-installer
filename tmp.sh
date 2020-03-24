@@ -45,7 +45,8 @@ for i in $(lsblk -o NAME -l | grep $DISK )
 
   echo $passwd
   echo $passwdcheck
-  dialog --title "Reboot"  --msgbox 'your installation is finished. Your pc will restart ... ' 6 20
+  sleep 10
+  dialog --title "Reboot"  --msgbox 'your installation is finished. Your pc will restart ... ' 10 30
 
   exit
 
