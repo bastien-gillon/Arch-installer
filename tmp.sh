@@ -25,7 +25,7 @@ for i in $(lsblk -o NAME -l | grep $DISK )
   ################################ DON'T  WORK ####################################################
   while [ "$passwd" != "$passwdcheck" ]
     do
-    if [ passwdcheck = "-1" ];then
+    if [ $passwdcheck = "-1" ];then
       dialog --title "PASSWORD" --msgbox  ' Passwords are not the same,please re enter your password ' 6 20
     fi
     echo "in while"
@@ -43,7 +43,7 @@ for i in $(lsblk -o NAME -l | grep $DISK )
     done
    #################################################################################################
 
-  dialog --title "Reboot"  --–ok–label "Reboot" --msgbox 'your installation is finished. Your pc will restart ... ' 6 20
+  dialog --title "Reboot"  --msgbox 'your installation is finished. Your pc will restart ... ' 6 20
 
   exit
 
