@@ -31,6 +31,9 @@ echo "bash chroot.sh"
 ) | arch-chroot /mnt 
 
 umount -R /mnt
+
+dialog --title "Reboot"  --msgbox "your installation is finished. Your pc will reboot ..." 10 30
+
 echo "==================="
 echo "| DOBBY EST LIBRE |"
 echo "==================="
