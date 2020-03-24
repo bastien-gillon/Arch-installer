@@ -13,7 +13,13 @@ for i in $(lsblk -o NAME -l | grep $DISK )
     mkdir /mnt/home
     mount /dev/${NBDISK[2]} /mnt/boot
     mount /dev/${NBDISK[4]}	/mnt/home
-    
+  else
+    mount /dev/${NBDISK[4]} /mnt/
+    mkdir /mnt/boot
+    mkdir /mnt/home
+    mount /dev/${NBDISK[2]} /mnt/boot
+    mount /dev/${NBDISK[5]}	/mnt/home
+
   fi
 
 
@@ -25,5 +31,7 @@ echo "bash chroot.sh"
 ) | arch-chroot /mnt 
 
 umount -R /mnt
-echo "DOBBY EST LIBRE"
+echo "==================="
+echo "| DOBBY EST LIBRE |"
+echo "==================="
 
