@@ -16,7 +16,7 @@ for i in $(lsblk -o NAME -l | grep $DISK )
     
   fi
 
-  MachineName=$(dialog --title "Machine Name" --inputbox "Enter your machine name:" 8 40)
+  MachineName=$(dialog --title "Machine Name" --inputbox "Enter your machine name:" --clear --stdout 8 40)
   passwd=""
   passwdcheck="-1"
 
