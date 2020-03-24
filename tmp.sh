@@ -24,17 +24,21 @@ for i in $(lsblk -o NAME -l | grep $DISK )
 
 
 (
-echo "rm -r arch-installer"
-echo "git clone https://github.com/bastien-gillon/arch-installer" ;
-echo "cd arch-installer"
-echo "bash chroot.sh"
+echo "echo "===================" " 
+echo "echo "| DOBBY IN CHROOT |" "
+echo "echo "===================" "
+sleep 3
 ) | arch-chroot /mnt 
 
 umount -R /mnt
 
+echo "======================================="
+echo "| MASTER HAS GIVEN TO DOOBY A SOCK ?? |"
+echo "======================================="
+
 dialog --title "Reboot"  --msgbox "your installation is finished. Your pc will reboot ..." 10 30
 
-echo "==================="
-echo "| DOBBY EST LIBRE |"
-echo "==================="
+echo "================="
+echo "| DOBBY IS FREE |"
+echo "================="
 
