@@ -29,9 +29,8 @@ echo "sleep 3"
 
 umount -R /mnt
 
-echo "======================================="
-echo "| MASTER HAS GIVEN TO DOOBY A SOCK ?? |"
-echo "======================================="
+echo "\n before \n"
+
 sleep 3
 dialog --title "Reboot"  --msgbox "your installation is finished. Your pc will reboot ..." 10 30
 
