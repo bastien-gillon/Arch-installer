@@ -63,8 +63,8 @@ whiptail --title "Disk Choice"\
 DISK=${MENU_OPTIONS[$DISKID+1]}
 
 #echo "you choose the disk ${DISK}"
-
-if [ whiptail --title "Disk Choice" --yesno "Are you sure you want to choose \" ${DISK} \"? Everything will be erased on this disc" 10 60 -eq 0 ];then
+diskChoice=$(whiptail --title "Disk Choice" --yesno "Are you sure you want to choose \" ${DISK} \"? Everything will be erased on this disc" 10 60)
+if [  $diskChoice -eq 0 ];then
  #!--------------------------------------Partition----------------------------------------!#
 
 # ( dd if=/dev/zero | pv -n /dev/${DISK} | dd of=/dev/${DISK} bs=4096 ) 2>&1 | whiptail --gauge "Running dd command (erasing ${DISK}), please wait..." 10 70 0
