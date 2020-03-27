@@ -103,7 +103,7 @@ while [ "$passwd" != "$passwdcheck" ]
     --stdout )
     done
 
-$rootmdp="root:"
+rootmdp="root:"
 echo $passwd
 echo $rootmdp$passwd
 ########################### BUG ###############################
