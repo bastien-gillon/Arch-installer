@@ -104,10 +104,12 @@ while [ "$passwd" != "$passwdcheck" ]
     done
 
 $rootmdp="root:"
+echo $passwd
+echo $rootmdp$passwd
 ########################### BUG ###############################
 ##                         root::                            ##
-echo $rootmdp$passwd | chpasswd
-
+$rootmdp$passwd | chpasswd
+exit 
 
 yes | pacman -S grub efibootmgr
 ########################### BUG ###############################
