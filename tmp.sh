@@ -30,8 +30,4 @@ echo "bash chroot.sh"
 echo "rm -r arch-installer"
 ) | arch-chroot /mnt 
 
-umount -R /mnt
-
-echo " before "
-
 
