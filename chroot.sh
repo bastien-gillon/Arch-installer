@@ -101,8 +101,11 @@ while [ "$passwd" != "$passwdcheck" ]
     --insecure \
     --passwordbox "Re Enter your password" 10 30 \
     --stdout )
-    done
+done
 
+passwd=""
+passwdcheck="Affec"
+echo $passwd
 rootmdp="root:"
 echo $passwd
 echo $rootmdp$passwd
