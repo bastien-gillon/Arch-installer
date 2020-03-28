@@ -75,7 +75,7 @@ dialog --title "Microcode Choice"\
 
 if [ $CPU -eq 1 ];then
   yes | pacman -S amd-ucode
-else if [ $CPU -eq 2 ];then 
+elif [ $CPU -eq 2 ];then 
   yes | pacman -S intel-ucode
 fi
 
