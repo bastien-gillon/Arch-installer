@@ -28,6 +28,6 @@ echo "git clone https://github.com/bastien-gillon/arch-installer"
 echo "cd arch-installer"
 echo "bash chroot.sh"
 echo "cd"
-echo "rm -r arch-installer"
+echo "rm -r /arch-installer"
 ) | arch-chroot /mnt 
 
