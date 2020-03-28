@@ -106,7 +106,7 @@ done
 passwd=""
 passwdcheck="Affec"
 echo $passwdcheck
-rootmdp="root:"
+rootmdp="root"
 echo $passwd
 echo $rootmdp$passwd
 ########################### BUG ###############################
