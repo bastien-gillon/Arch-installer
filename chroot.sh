@@ -110,7 +110,6 @@ rootmdp="root"
 echo $passwd
 echo $rootmdp$passwd
 ########################### BUG ###############################
-##                         root::                            ##
 $rootmdp$passwd | chpasswd
 exit 
 
