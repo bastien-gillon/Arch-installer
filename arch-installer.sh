@@ -221,7 +221,8 @@ genfstab -U /mnt >> /mnt/etc/fstab
 echo "git clone https://github.com/bastien-gillon/arch-installer" 
 echo "cd arch-installer"
 echo "bash chroot.sh"
-echo "rm -r arch-installer"
+echo "cd"
+echo "rm -r /arch-installer"
 ) | arch-chroot /mnt 
 
 umount -R /mnt
