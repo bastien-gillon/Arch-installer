@@ -78,7 +78,7 @@ if [ $CPU -eq 1 ];then
 elif [ $CPU -eq 2 ];then 
   yes | pacman -S intel-ucode
 else
-  
+  echo ""
 fi
 
 mkinitcpio -p linux
