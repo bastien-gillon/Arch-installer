@@ -63,7 +63,7 @@ fi
 
 MachineName=$(dialog --title "Machine Name" --inputbox "Enter your machine name:" --stdout 8 40)
 echo $MachineName > /etc/hostname
-echo "127.0.1.1 $MachineName.localdomain $MachineName" >> /etc/hosts
+echo "127.0.1.1 $MachineName.localdomain $MachineName" > /etc/hosts
 
 CPU=$(\
 dialog --title "Microcode Choice"\
