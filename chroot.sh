@@ -71,11 +71,11 @@ echo "127.0.1.1 $MachineName.localdomain $MachineName" >> /etc/hosts
 CPU=$(\
 dialog --title "Microcode Choice"\
  --menu "choose your CPU manufacturer: "  20 70 10 \
- 1 AMD 2 Intel 3>&1 1>&2 2>&3 3>&- )
+ 1 AMD 2 Intel 3 VM 3>&1 1>&2 2>&3 3>&- )
 
 if [ $CPU -eq 1 ];then
   yes | pacman -S amd-ucode
-else
+else if [ $CPU -eq 2 ];then 
   yes | pacman -S intel-ucode
 fi
 
