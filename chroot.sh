@@ -107,7 +107,7 @@ rootmdp="root:"
 echo $passwd
 echo $rootmdp$passwd
 
-$rootmdp$passwd | chpasswd 
+"$rootmdp$passwd" | chpasswd 
 
 yes | pacman -S grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot
