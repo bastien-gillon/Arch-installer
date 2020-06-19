@@ -1,5 +1,7 @@
 # Arch-installer
 
+/!\ ONLY WORK WITH UEFI SYSTEME /!\
+
 Download git
 
 pacman -Sy git 
